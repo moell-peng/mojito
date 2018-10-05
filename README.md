@@ -4,7 +4,7 @@ Mojito is a backend management system based on Laravel, Vue, Element.
 
 ## Simplified Chinese
 
-[中文README](https://www.github.com/moell-peng/mojito/README_zh.md)
+[中文README](./README_zh.md)
 
 ## Screenshot
 

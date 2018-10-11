@@ -116,7 +116,7 @@
     },
     data() {
       return {
-        ...tableDefaultData,
+        ...tableDefaultData(),
         assignRoleParams: {
           id: 0,
           guardName: 'admin',

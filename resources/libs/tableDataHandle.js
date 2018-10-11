@@ -35,24 +35,26 @@ export const deleteSuccess = (index, th) => {
   notify.deleteSuccess(th)
 }
 
-export const tableDefaultData = {
-  queryParams: {
+export const tableDefaultData = () => {
+  return {
+    queryParams: {
 
-  },
-  tableData: [],
-  pagination: {
-    currentPage: 1,
-    pageSize: 15,
-    total: 0,
-    from: 1,
-    lastPage: 1,
-    to:1
-  },
-  nowRowData: {
-    index: 0,
-    row: {}
-  },
-  dialogAddFormVisible: false,
-  dialogEditFormVisible: false,
-  formLabelWidth: '120px',
+    },
+    tableData: [],
+    pagination: {
+      currentPage: 1,
+      pageSize: 15,
+      total: 0,
+      from: 1,
+      lastPage: 1,
+      to:1
+    },
+    nowRowData: {
+      index: 0,
+      row: {}
+    },
+    dialogAddFormVisible: false,
+    dialogEditFormVisible: false,
+    formLabelWidth: '120px'
+  }
 }

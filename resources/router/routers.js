@@ -37,7 +37,8 @@ export default [
       {
         path: 'role',
         meta: {
-          title: 'role'
+          title: 'role',
+          cache: true,
         },
         component: ParentView,
         children: [
@@ -47,13 +48,12 @@ export default [
             meta: {
               provider: 'admin',
               title: 'roleAssignPermission',
-              cache: true,
               permission: 'role.assign-permissions'
             },
             component: resolve => void(require(['../views/admin/role/permission.vue'], resolve)),
           },
           {
-            name: 'role',
+            name: 'roleIndex',
             path: '',
             meta: {
               provider: 'admin',
@@ -66,7 +66,7 @@ export default [
         ]
       },
       {
-        name: 'PermissionIndex',
+        name: 'permissionIndex',
         path: 'permission',
         meta: {
           provider: 'admin',
@@ -77,7 +77,7 @@ export default [
         component: resolve => void(require(['../views/admin/permission/index.vue'], resolve))
       },
       {
-        name: 'PermissionGroupIndex',
+        name: 'permissionGroupIndex',
         path: 'permission-group',
         meta: {
           provider: 'admin',

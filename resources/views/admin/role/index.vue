@@ -115,7 +115,7 @@
     },
     data() {
       return {
-        ...tableDefaultData,
+        ...tableDefaultData(),
         addForm: {
           name: '',
           guard_name: '',

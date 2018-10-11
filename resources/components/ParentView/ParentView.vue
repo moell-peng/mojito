@@ -1,8 +1,15 @@
 <template>
-  <router-view/>
+  <keep-alive :include="cacheTags">
+    <router-view/>
+  </keep-alive>
 </template>
 <script>
   export default {
-    name: 'ParentView'
+    name: 'ParentView',
+    computed: {
+      cacheTags() {
+        return this.$store.getters.cacheTags
+      }
+    }
   }
 </script>

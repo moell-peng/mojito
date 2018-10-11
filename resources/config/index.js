@@ -2,7 +2,7 @@ export default {
   admin: {
     authorize: {
       clientId: 2,
-      clientSecret: ''
+      clientSecret: '0amTuj8HL4BlPtUs8StQCNiKnNiPHdMg3qDPgOXa'
     },
     loginRouteName: 'adminLogin',
 

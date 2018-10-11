@@ -128,7 +128,7 @@
       MenuTreeSelect
     },
     data: () => ({
-      ...tableDefaultData,
+      ...tableDefaultData(),
       tableListData: [],
       foldList: [],
       addForm: {},

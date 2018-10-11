@@ -170,13 +170,13 @@
   import { hasPermission } from "../../../libs/permission"
 
   export default {
-    name: 'PermissionIndex',
+    name: 'permissionIndex',
     components: {
       PermissionGroupSelect, GuardSelect
     },
     data() {
       return {
-        ...tableDefaultData,
+        ...tableDefaultData(),
         addForm: {
           name: '',
           guard_name: '',

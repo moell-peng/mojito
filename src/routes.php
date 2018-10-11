@@ -20,8 +20,6 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
             ['index', 'show', 'store', 'update', 'destroy']
         ]);
 
-        $router->get('permission-user-all', 'PermissionController@allUserPermission')->name('permission.all-user-permission');
-
         $router->resource('admin-user', 'AdminUserController', ['only' =>
             ['index', 'show', 'store', 'update', 'destroy']
         ]);
@@ -40,6 +38,14 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         $router->resource('menu', 'MenuController', ['only' =>
             ['index', 'show', 'store', 'update', 'destroy']
         ]);
+
+    });
+
+$router->namespace('\Moell\Mojito\Http\Controllers')
+    ->prefix('api')
+    ->middleware(['api', config('mojito.super_admin.auth') . ',' . config('mojito.multi_auth_guards'), 'mojito.permission'])
+    ->group(function ($router) {
+        $router->get('permission-user-all', 'PermissionController@allUserPermission')->name('permission.all-user-permission');
 
         $router->get('my-menu', 'MenuController@my')->name('menu.my');
     });

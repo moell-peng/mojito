@@ -58,28 +58,43 @@
           }
         })
       },
-    },
+      loadData () {
 
-    created() {
-      let permissionGroups = guardNameForPermissions( this.$route.params.guardName)
-      let rolePermissions = rolePermission( this.$route.params.id)
+        this.rolePermissions = []
+        this.guardNameByPermissions = []
+        this.groupPermissions = {}
+        this.radio = {}
 
-      Promise.all([permissionGroups, rolePermissions]).then( result => {
-        this.guardNameByPermissions  = result[0].data.data
+        let permissionGroups = guardNameForPermissions(this.$route.params.guardName)
+        let rolePermissions = rolePermission(this.$route.params.id)
 
-        result[0].data.data.forEach(item => {
-          if (!this.groupPermissions.hasOwnProperty(item.id)) {
-            this.groupPermissions[item.id] = []
-          }
-          item.permission.forEach (permission => {
-            this.groupPermissions[item.id].push(permission.name)
+        Promise.all([permissionGroups, rolePermissions]).then( result => {
+          this.guardNameByPermissions  = result[0].data.data
+
+          result[0].data.data.forEach(item => {
+            if (!this.groupPermissions.hasOwnProperty(item.id)) {
+              this.groupPermissions[item.id] = []
+            }
+            item.permission.forEach (permission => {
+              this.groupPermissions[item.id].push(permission.name)
+            })
+          })
+
+          result[1].data.data.forEach(item => {
+            this.rolePermissions.push(item.name)
           })
         })
-
-        result[1].data.data.forEach(item => {
-          this.rolePermissions.push(item.name)
-        })
-      })
+      }
+    },
+    watch: {
+      $route(route) {
+        if (route.name === 'rolePermission') {
+          this.loadData()
+        }
+      }
+    },
+    created() {
+      this.loadData()
     }
   }
 </script>

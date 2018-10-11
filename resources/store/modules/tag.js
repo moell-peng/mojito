@@ -9,7 +9,11 @@ const state = {
 
 const getters = {
   tags: state => state.tagList,
-  cacheTags: state => state.tagList.length ? state.tagList.filter(item => item.cache).map(item => item.name) : []
+  cacheTags: state => {
+    let tags = state.tagList.length ? state.tagList.filter(item => item.cache).map(item => item.name) : []
+    tags.push('ParentView')
+    return tags
+  }
 }
 
 const mutations = {

@@ -41,7 +41,7 @@ class PermissionGroupController extends Controller
             });
 
         return response()->json([
-            'data' => $permissionGroups->toArray()
+            'data' => array_values($permissionGroups->toArray())
         ]);
     }
 

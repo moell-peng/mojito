@@ -86,7 +86,7 @@
     name: 'permissionGroupIndex',
     data() {
       return {
-        ...tableDefaultData,
+        ...tableDefaultData(),
         addForm: {
           name: '',
         },

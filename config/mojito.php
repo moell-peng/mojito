@@ -14,5 +14,8 @@ return [
         'auth' => env('MOJITO_SUPER_ADMIN_AUTH', 'auth:admin'),
 
         'guard' => env('MOJITO_SUPER_ADMIN_GRARD', 'admin')
-    ]
+    ],
+
+    'multi_auth_guards' => env('MOJITO_MULTI_AUTH_GUARDS'),
+
 ];

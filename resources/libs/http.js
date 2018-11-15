@@ -28,7 +28,6 @@ httpRequest.interceptors.response.use(
     let message = error.response.data.message ? error.response.data.message : error.response.statusText
     let dangerouslyUseHTMLString = false
 
-    console.log(error.response)
     if (error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
       message += '<br>';
       for (let key in error.response.data.errors) {
@@ -44,7 +43,6 @@ httpRequest.interceptors.response.use(
       dangerouslyUseHTMLString = true
     }
 
-    console.log(message, 1);
 
     Message({
       dangerouslyUseHTMLString,

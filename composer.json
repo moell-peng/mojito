@@ -1,6 +1,6 @@
 {
     "name": "moell/mojito",
-    "description": "This is a component of a rapid build system.",
+    "description": "Mojito admin is a component of laravel, vue, element build backend system.",
     "type": "library",
     "license": "MIT",
     "authors": [

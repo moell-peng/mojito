@@ -114,7 +114,7 @@ npm install
 npm install -D vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.4.6
 ```
 
-Mix 引入 admin.js 
+将 admin.js  添加到 webpack.mix.js 
 
 ```
 mix.js('resources/assets/js/app.js', 'public/js')

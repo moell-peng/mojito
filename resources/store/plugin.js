@@ -1,11 +1,10 @@
-import { setToken, setPermissions } from '../libs/auth'
+import { setPermissions } from '../libs/auth'
 import { setHttpToken } from '../libs/http'
 
 const subscribe = (store) => {
   store.subscribe((mutation, state) => {
     switch (mutation.type) {
       case 'SET_TOKEN':
-        setToken(state.login.token, state.login.provider)
         setHttpToken(state.login.token.access_token)
         break;
       case 'SET_PERMISSIONS':

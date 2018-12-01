@@ -111,7 +111,7 @@ export default {
 }
 ```
 
-Install Javscript Dependencies
+Install JavaScript Dependencies
 
 ```shell
 npm install

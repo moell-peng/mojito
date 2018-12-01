@@ -1,5 +1,5 @@
 import { login, logout } from '../../api/login'
-import { removeToken } from '../../libs/auth'
+import { removeToken, setToken } from '../../libs/auth'
 
 const state = {
   token: '',
@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   loginHandle ({ commit }, { username, password, clientId, clientSecret, provider }) {
     return new Promise((resolve, reject) => {
-      login(arguments[1])
+      return login(arguments[1])
         .then(response => {
           const token = {
             ...response.data,
@@ -30,7 +30,7 @@ const actions = {
 
           commit('SET_TOKEN', {token, provider})
 
-          resolve()
+          resolve(setToken(token, provider))
         })
         .catch(error => {
           reject(error)

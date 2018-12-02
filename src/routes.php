@@ -51,7 +51,5 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
     });
 
 $router->namespace('\Moell\Mojito\Http\Controllers')->middleware('web')->group(function ($router) {
-    $router->get('mojito', function () {
-        return view('dashboard');
-    });
+    $router->view('mojito', 'dashboard');
 });

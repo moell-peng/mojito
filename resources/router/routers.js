@@ -37,6 +37,7 @@ export default [
       {
         path: 'role',
         meta: {
+		  provider: 'admin',
           title: 'role',
           cache: true,
         },

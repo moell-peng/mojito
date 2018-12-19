@@ -17,55 +17,63 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const provider = to.meta.provider
   if (provider) {
-    const providerConfig = config[provider]
+    const providerConfig = config[Vue.prototype.$provider]
     if (providerConfig.loginRouteName === to.name) {
       next()
     }
 
-    let login = new Promise((resolve, reject) => {
-      getToken(provider).then( token => {
-        if (!token || !token.hasOwnProperty('access_token') || ((new Date().getTime() - token.created_at) / 1000) >= token.expires_in) {
-          reject({ name : providerConfig.loginRouteName})
-        } else {
-          if (!store.getters.token) {
-            store.commit('SET_TOKEN', {token, provider})
-          }
-          resolve()
-        }
-      }).catch(error => {
-        reject(error)
+    if (Vue.prototype.$provider !== provider) {
+      Message({
+        message: 'Access not allowed, not current project route',
+        type: 'error'
       })
-    })
-
-    let permission = new Promise((resolve, reject) => {
-      if (!to.meta.permission) {
-        resolve()
-      } else {
-        getPermissions(provider).then( permissions => {
-          if (permissions.indexOf(to.meta.permission) < 0) {
-            reject(`You do not have permission to access ${to.meta.permission}`)
+      next({name: providerConfig.dashboardName})
+    } else {
+      let login = new Promise((resolve, reject) => {
+        getToken(provider).then( token => {
+          if (!token || !token.hasOwnProperty('access_token') || ((new Date().getTime() - token.created_at) / 1000) >= token.expires_in) {
+            reject({ name : providerConfig.loginRouteName})
+          } else {
+            if (!store.getters.token) {
+              store.commit('SET_TOKEN', {token, provider})
+            }
+            resolve()
           }
-          resolve()
         }).catch(error => {
           reject(error)
         })
-      }
-    })
+      })
 
-    Promise.all([login, permission]).then( result => {
-      next()
-    }).catch( error => {
-      let varType = typeof error;
-      if (varType === 'object') {
-        next({name: error.name})
-      } else {
-        Message({
-          message: error,
-          type: 'error'
-        })
-        next({name: from.name})
-      }
-    })
+      let permission = new Promise((resolve, reject) => {
+        if (!to.meta.permission) {
+          resolve()
+        } else {
+          getPermissions(provider).then( permissions => {
+            if (permissions.indexOf(to.meta.permission) < 0) {
+              reject(`You do not have permission to access ${to.meta.permission}`)
+            }
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
+        }
+      })
+
+      Promise.all([login, permission]).then( result => {
+        next()
+      }).catch( error => {
+        let varType = typeof error;
+        if (varType === 'object') {
+          next({name: error.name})
+        } else {
+          Message({
+            message: error,
+            type: 'error'
+          })
+          next({name: from.name})
+        }
+      })
+    }
   } else {
     next()
   }

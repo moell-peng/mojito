@@ -49,4 +49,5 @@ export default {
   assignRole: '分配角色',
   selectAll: '全选',
   unselectAll: '全不选',
+  sequence: '顺序',
 }

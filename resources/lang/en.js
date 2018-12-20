@@ -49,4 +49,5 @@ export default {
   assignRole: 'Assign role',
   selectAll: 'Select all',
   unselectAll: 'Unselect all',
+  sequence: 'Sequence',
 }

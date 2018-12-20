@@ -22,6 +22,7 @@ class CreateMenuTestTable  extends Migration
             $table->string('permission_name', 50)->nullable();
             $table->string('name');
             $table->string('guard_name', 30);
+            $table->smallInteger('sequence')->default(0);
             $table->timestamps();
         });
     }

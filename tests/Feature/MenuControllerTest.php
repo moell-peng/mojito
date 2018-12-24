@@ -79,7 +79,8 @@ class MenuControllerTest extends FeatureTestCase
             'icon' => 'fa fa-home',
             'uri' => '/',
             'is_link' => 1,
-            'guard_name' => 'admin'
+            'guard_name' => 'admin',
+            'sequence' => 10
         ];
 
         $response = $this->post(route('menu.store'), $data, $this->jsonHeader());
@@ -98,7 +99,8 @@ class MenuControllerTest extends FeatureTestCase
             'icon' => 'fa fa-home',
             'uri' => '/',
             'is_link' => 1,
-            'guard_name' => 'admin'
+            'guard_name' => 'admin',
+            'sequence' => 0
         ];
 
         $menu = Menu::query()->where('parent_id', '>', 0)->first();

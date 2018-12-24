@@ -19,7 +19,10 @@ class MenuController extends Controller
      */
     public function index(Request $request)
     {
-        $menus = Menu::query()->where('guard_name', $request->input('guard_name', 'admin'))->get();
+        $menus = Menu::query()
+            ->where('guard_name', $request->input('guard_name', 'admin'))
+            ->orderBy('sequence', 'desc')
+            ->get();
 
         return response()->json(['data' => make_tree($menus->toArray())]);
     }
@@ -46,6 +49,7 @@ class MenuController extends Controller
         $userPermissions = Auth::user()->getAllPermissions()->pluck('name');
         $menus = Menu::query()
             ->where('guard_name', $guardName)
+            ->orderBy('sequence', 'desc')
             ->get()
             ->filter(function ($item) use ($userPermissions) {
                 return !$item->permission_name || $userPermissions->contains($item->permission_name);

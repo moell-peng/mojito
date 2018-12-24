@@ -33,6 +33,10 @@
               :label="$t('permission')">
       </el-table-column>
       <el-table-column
+              prop="sequence"
+              :label="$t('sequence')">
+      </el-table-column>
+      <el-table-column
               align="center"
               :label="$t('icon')">
         <template slot-scope="scope">
@@ -77,6 +81,9 @@
         <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
           <el-input v-model="addForm.icon"></el-input>
         </el-form-item>
+        <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
+          <el-input v-model.number="addForm.sequence"></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogAddFormVisible = false">{{ $t('cancel') }}</el-button>
@@ -103,6 +110,9 @@
         </el-form-item>
         <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
           <el-input v-model="editForm.icon"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
+          <el-input v-model.number="editForm.sequence"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -148,6 +158,9 @@
         ],
         parent_id: [
           { required: true, type: 'number' }
+        ],
+        sequence: [
+          {type: 'number' }
         ]
       },
     }),

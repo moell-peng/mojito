@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import router from "../../router"
 import config from '../../config'
 import { routeByName, routeFormatTag } from "../../libs/util"
@@ -22,7 +23,8 @@ const mutations = {
       return item.fullPath === tag.fullPath
     })
 
-    if (tag.provider) {
+    if (tag.provider && tag.provider === Vue.prototype.$provider) {
+
       let dashboardName = config[tag.provider].dashboardName
       if (tag.name !== dashboardName && (state.tagList.length === 0 || state.tagList[0].name !== dashboardName)) {
         let dashboardTag = routeFormatTag(routeByName(dashboardName))

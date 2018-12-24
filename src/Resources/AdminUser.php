@@ -13,6 +13,8 @@ class AdminUser extends Resource {
 			'avatar' => $this->avatar,
 			'mobile' => $this->mobile,
 			'roles' => $this->roles->pluck('name'),
+			'farm' => optional($this->farm)->pluck('id'),
+			'shop' => optional($this->shop)->pluck('id'),
 			'created_at' => (string) $this->created_at,
 			'updated_at' => (string) $this->updated_at,
 		];

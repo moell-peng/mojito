@@ -212,7 +212,7 @@ class MojitoTableSeeder extends Seeder
         AdminUserFactory::adminUser()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+            'password' => '$2y$10$lX4D9gdiobLCtjghFLlz4eUn3rcN5MYb20qfF7kIn6MSaokYt0a6W', // 123456
         ]);
     }
 

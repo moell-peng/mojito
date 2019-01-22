@@ -95,14 +95,14 @@ Passport 安装和配置
 php artisan passport:install
 ```
 
-执行成功后获取到相应的密码授予客户端的 ID 和 secret 并且配置到相对应的 `resources/config/index.js` :
+执行成功后获取到客户端的 Client ID 为 2 的 Client secret 配置到 `resources/js/config/index.js` :
 
 ```
 export default {
   admin: {
     authorize: {
-      clientId: ID,
-      clientSecret: secret
+      clientId: 2,
+      clientSecret: 'your_Client_secret'
     }
 }
 ```
@@ -138,7 +138,7 @@ url: http://localhost/mojito#/admin/login
 
 email: admin@gmail.com
 
-password: secret
+password: 123456
 
 ## 依赖开源软件
 

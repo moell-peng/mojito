@@ -12,6 +12,8 @@ export function responseDataFormat(response, th) {
     lastPage: meta.last_page,
     to: meta.to
   }
+
+  th.loading = false
 }
 
 export const editSuccess = th => {
@@ -55,6 +57,7 @@ export const tableDefaultData = () => {
     },
     dialogAddFormVisible: false,
     dialogEditFormVisible: false,
-    formLabelWidth: '120px'
+    formLabelWidth: '120px',
+    loading: false
   }
 }

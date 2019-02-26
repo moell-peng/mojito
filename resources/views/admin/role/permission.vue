@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <el-card v-for="group in guardNameByPermissions" :key="group.id" style="margin-bottom:20px;">
       <div slot="header">
         <div style="float:right">
@@ -60,6 +60,7 @@
       },
       loadData () {
 
+        this.loading = true
         this.rolePermissions = []
         this.guardNameByPermissions = []
         this.groupPermissions = {}
@@ -84,6 +85,8 @@
             this.rolePermissions.push(item.name)
           })
         })
+
+        this.loading = false
       }
     },
     watch: {

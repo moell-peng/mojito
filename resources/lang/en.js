@@ -27,6 +27,8 @@ export default {
   delete: 'Delete',
   add: 'Add',
   password: 'Password',
+  oldPassword: 'Old password',
+  confirmPassword: 'Confirm password',
   confirm: 'Confirm',
   cancel: 'Cancel',
   success: 'Success',
@@ -49,5 +51,5 @@ export default {
   assignRole: 'Assign role',
   selectAll: 'Select all',
   unselectAll: 'Unselect all',
-  sequence: 'Sequence',
+  changePassword: 'Change password',
 }

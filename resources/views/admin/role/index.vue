@@ -11,6 +11,7 @@
     </el-form>
     <el-table
             :data="tableData"
+            v-loading="loading"
             border
             style="width: 100%">
       <el-table-column
@@ -151,9 +152,11 @@
       handleDelete(index, row) {
         deleteRole(row.id).then( response => {
           deleteSuccess(index, this)
+          this.requestData()
         })
       },
       requestData() {
+        this.loading = true
         getRoleList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
           responseDataFormat(response, this)
         })
@@ -163,6 +166,7 @@
           if (valid) {
             addRole(this.addForm).then( response => {
               addSuccess(this)
+              this.requestData()
             })
           } else {
             return false;

@@ -48,8 +48,13 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         $router->get('permission-user-all', 'PermissionController@allUserPermission')->name('permission.all-user-permission');
 
         $router->get('my-menu', 'MenuController@my')->name('menu.my');
+
+        $router->patch('user-change-password', 'ChangePasswordController@changePassword')->name('user.change-password');
     });
 
 $router->namespace('\Moell\Mojito\Http\Controllers')->middleware('web')->group(function ($router) {
     $router->view('mojito', 'dashboard');
 });
+
+$router->middleware(['api', config('mojito.super_admin.auth') . ',' . config('mojito.multi_auth_guards')])
+    ->patch('api/user-change-password', '\Moell\Mojito\Http\Controllers\ChangePasswordController@changePassword')->name('user.change-password');

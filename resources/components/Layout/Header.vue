@@ -13,15 +13,16 @@
         <div class="avatar">
           <el-dropdown>
             <el-button :plain="true">
-              <img src="https://moell.cn/uploads/avatar/7be338418efc00ab728281b923653dc4.jpg" width="30" height="30" style="border-radius:30px">
+              <img src="http://blog-image.moell.cn/avatars/wxspzIISH98xMRzV68phGyxsEWPY6mnsBtYxRGP8.jpeg" width="30" height="30" style="border-radius:30px">
               <i class="el-icon-arrow-down el-icon--right"></i>
             </el-button>
             <el-dropdown-menu slot="dropdown">
-              <a href="https://github.com/moell-peng/mojito" target="_blank">
+              <a href="https://github.com/moell-peng/mojito" target="_blank" v-if="showAuthorGitHubUrl">
                 <el-dropdown-item>
                   Github
                 </el-dropdown-item>
               </a>
+              <el-dropdown-item @click.native="openDialogChangePasswordForm">{{ $t('changePassword') }} </el-dropdown-item>
               <el-dropdown-item @click.native="logout">Logout</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -38,17 +39,71 @@
         </div>-->
       </el-col>
     </el-row>
+    <el-dialog :title="$t('changePassword')" :visible.sync="dialogChangePasswordFormVisible" width="30%">
+      <el-form :model="changePasswordForm" :rules="rules" ref="changePasswordForm">
+        <el-form-item :label="$t('oldPassword')" prop="old_password" :label-width="formLabelWidth">
+          <el-input v-model="changePasswordForm.old_password" type="password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('password')" prop="password" :label-width="formLabelWidth">
+          <el-input v-model="changePasswordForm.password" type="password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item :label="$t('confirmPassword')" prop="password_confirmation" :label-width="formLabelWidth">
+          <el-input v-model="changePasswordForm.password_confirmation" type="password" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogChangePasswordFormVisible = false">{{ $t('cancel') }}</el-button>
+        <el-button type="primary" @click="handleChangePassword">{{ $t('confirm') }}</el-button>
+      </div>
+    </el-dialog>
   </el-header>
 </template>
 
 <script>
   import { mapActions } from 'vuex'
   import config from '../../config'
+  import { changePassword } from '../../api/changePassword'
+  import notify from '../../libs/notify'
 
   export default {
     name: 'Header',
     props: {
       isCollapse: Boolean
+    },
+    data() {
+      let confirmPassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('Please enter your password again'))
+        } else if (value !== this.changePasswordForm.password) {
+          callback(new Error('Inconsistent password entered twice'))
+        } else {
+          callback()
+        }
+      }
+      return {
+        formLabelWidth: '150px',
+        dialogChangePasswordFormVisible: false,
+        changePasswordForm:{
+          old_password: null,
+          password: null,
+          password_confirmation: null
+        },
+        rules: {
+          old_password: [
+            { required: true },
+            { min: 8, max: 32 }
+          ],
+          password: [
+            { required: true },
+            { min: 8, max: 32 }
+          ],
+          password_confirmation: [
+            { required: true },
+            { validator: confirmPassword },
+            { min: 8, max: 32 }
+          ]
+        }
+      }
     },
     methods: {
       ...mapActions([
@@ -61,12 +116,31 @@
         this.logoutHandle(this.$provider).then(this.$router.push({
           name: config[this.$provider].loginRouteName
         }))
+      },
+      openDialogChangePasswordForm () {
+        this.dialogChangePasswordFormVisible = true
+      },
+      handleChangePassword () {
+        this.$refs['changePasswordForm'].validate((valid) => {
+          if (valid) {
+            changePassword(this.changePasswordForm).then( response => {
+              notify.editSuccess(this)
+              this.dialogChangePasswordFormVisible = false
+              this.$refs['changePasswordForm'].resetFields()
+            })
+          } else {
+            return false;
+          }
+        });
       }
     },
     computed: {
       breadcrumb () {
         return this.$store.getters.breadcrumb
-      }
+      },
+      showAuthorGitHubUrl () {
+        return config.showAuthorGitHubUrl
+      },
     }
   }
 </script>

@@ -14,6 +14,7 @@
     </el-form>
     <el-table
             :data="tableData"
+            v-loading="loading"
             border
             style="width: 100%">
       <el-table-column
@@ -168,9 +169,11 @@
       handleDelete (index, row) {
         deleteAdminUser(row.id).then( response => {
           deleteSuccess(index, this)
+          this.requestData()
         })
       },
       requestData () {
+        this.loading = true
         getAdminUserList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
           responseDataFormat(response, this)
         })
@@ -180,6 +183,7 @@
           if (valid) {
             addAdminUser(this.addForm).then( response => {
               addSuccess(this)
+              this.requestData()
             })
           } else {
             return false;

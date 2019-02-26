@@ -2,7 +2,7 @@ export default {
   admin: {
     authorize: {
       clientId: 2,
-      clientSecret: ''
+      clientSecret: '0amTuj8HL4BlPtUs8StQCNiKnNiPHdMg3qDPgOXa'
     },
     loginRouteName: 'adminLogin',
 
@@ -31,5 +31,7 @@ export default {
   tokenTTL: 1,
 
   //Unit is day
-  refreshTokenTTL: 7
+  refreshTokenTTL: 7,
+
+  showAuthorGitHubUrl: true,
 }

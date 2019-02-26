@@ -12,6 +12,7 @@
 
     <el-table
             :data="tableListData"
+            v-loading="loading"
             :row-style="toggleDisplayTr"
             border stripe
             class="init_table">
@@ -174,7 +175,6 @@
       handleEdit (index, row) {
         this.editForm = row
         this.nowRowData = { index, row }
-        console.log(index, row)
         this.dialogEditFormVisible = true
       },
       handleEditMenu () {
@@ -187,7 +187,7 @@
           } else {
             return false;
           }
-        });
+        })
       },
       handleAddMenu () {
         this.$refs['addForm'].validate((valid) => {
@@ -199,7 +199,7 @@
           } else {
             return false;
           }
-        });
+        })
       },
       //Author: zyx <https://github.com/no-simple/vue-tree-table>
       toggleFoldingStatus (params) {
@@ -236,8 +236,10 @@
         } return parent
       },
       requestData () {
+        this.loading = true
         getMenuList(this.queryParams).then( response => {
           this.tableListData = this.formatConversion([], response.data.data)
+          this.loading = false
         })
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <el-aside :width="isCollapse ? '64px' : '250px'">
+  <el-aside :width="isCollapse ? '65px' : '250px'">
     <el-menu
             class="el-menu-vertical"
             :collapse="isCollapse"

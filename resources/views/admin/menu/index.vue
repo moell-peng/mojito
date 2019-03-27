@@ -5,7 +5,7 @@
         <guard-select :nowValue.sync="queryParams.guard_name"></guard-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary"  icon="el-icon-search">{{ $t('search') }}</el-button>
+        <el-button type="primary" @click="requestData"  icon="el-icon-search">{{ $t('search') }}</el-button>
         <el-button type="primary" v-if="addPermission"  @click="dialogAddFormVisible = true" icon="el-icon-plus">{{ $t('add') }}</el-button>
       </el-form-item>
     </el-form>

@@ -42,6 +42,7 @@ First install laravel and make sure you have the correct database connection con
 ```
 composer require moell/mojito
 ```
+> If there is a conflict caused by the `random_compat` version, manually add `moell/mojito` to composer.json and then `composer update` to install.
 
 Then run the following command to publish the resource:
 
@@ -115,7 +116,7 @@ Install JavaScript Dependencies
 
 ```shell
 npm install
-npm install -D vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.4.6
+npm install -D vuex@~3.0.1 vue-router@~3.0.1 vue-i18n@~8.1.0 localforage@~1.7.2 element-ui@~2.4.6
 ```
 
 Add admin.js to webpack.mix.js

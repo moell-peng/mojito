@@ -38,6 +38,7 @@ Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
 ```
 composer require moell/mojito
 ```
+> 如果出现 `random_compat` 版本造成的冲突，请手动将 `moell/mojito` 加入 composer.json ，然后执行 `composer update`  进行安装。
 
 然后运行下面的命令来发布资源:
 
@@ -111,7 +112,7 @@ export default {
 
 ```shell
 npm install
-npm install -D vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.4.6
+npm install -D vuex@~3.0.1 vue-router@~3.0.1 vue-i18n@~8.1.0 localforage@~1.7.2 element-ui@~2.4.6
 ```
 
 将 admin.js  添加到 webpack.mix.js 

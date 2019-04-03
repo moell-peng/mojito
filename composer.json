@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "smartins/passport-multiauth": "~3.0",
+        "smartins/passport-multiauth": "~4.0",
         "spatie/laravel-permission": "~2.12"
     },
     "require-dev": {

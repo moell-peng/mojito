@@ -99,7 +99,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
-              <el-input type="number" v-model="addForm.sequence"></el-input>
+              <el-input v-model="addForm.sequence"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -147,7 +147,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
-              <el-input type="number" v-model="editForm.sequence"></el-input>
+              <el-input  v-model="editForm.sequence"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -169,24 +169,27 @@
   import GuardSelect from '../../../components/Select/Guard'
   import PermissionGroupSelect from "../../../components/Select/PermissionGroup";
   import { hasPermission } from "../../../libs/permission"
+  import { queryParams } from "../../../mixins/queryParams"
 
   export default {
     name: 'permissionIndex',
     components: {
       PermissionGroupSelect, GuardSelect
     },
+    mixins:[queryParams],
     data() {
       return {
         ...tableDefaultData(),
         addForm: {
           name: '',
           guard_name: '',
-          description: ''
+          description: '',
+          sequence:0,
         },
         editForm: {
           name: '',
           guard_name: '',
-          description: ''
+          description: '',
         },
         rules: {
           name: [
@@ -221,7 +224,7 @@
       },
       requestData() {
         this.loading = true
-        getPermissionList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
+        getPermissionList({...this.queryParams, page: this.queryPage}).then( response => {
           responseDataFormat(response, this)
         })
       },

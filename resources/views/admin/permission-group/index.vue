@@ -82,9 +82,11 @@
   import { responseDataFormat, tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
   import { hasPermission } from '../../../libs/permission'
   import notify from '../../../libs/notify'
+  import { queryParams } from "../../../mixins/queryParams"
 
   export default {
     name: 'permissionGroupIndex',
+    mixins:[queryParams],
     data() {
       return {
         ...tableDefaultData(),
@@ -118,7 +120,7 @@
       },
       requestData() {
         this.loading = true
-        getPermissionGroupList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
+        getPermissionGroupList({...this.queryParams, page: this.queryPage}).then( response => {
           responseDataFormat(response, this)
         })
       },

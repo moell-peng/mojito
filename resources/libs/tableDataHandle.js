@@ -14,6 +14,7 @@ export function responseDataFormat(response, th) {
   }
 
   th.loading = false
+  th.queryParamsChange = false
 }
 
 export const editSuccess = th => {

@@ -35,6 +35,8 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         $router->get('guard-name-for-permissions/{guardName}', 'PermissionGroupController@guardNameForPermissions')
             ->name('permission-group.guard-name-for-permission');
 
+        $router->get("permission-group-all", "PermissionGroupController@all")->name("permission-group.all");
+
         $router->resource('menu', 'MenuController', ['only' =>
             ['index', 'show', 'store', 'update', 'destroy']
         ]);
@@ -53,7 +55,7 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
     });
 
 $router->namespace('\Moell\Mojito\Http\Controllers')->middleware('web')->group(function ($router) {
-    $router->view('mojito', 'dashboard');
+    $router->view(config('mojito.admin_route_path'), 'dashboard');
 });
 
 $router->middleware(['api', config('mojito.super_admin.auth') . ',' . config('mojito.multi_auth_guards')])

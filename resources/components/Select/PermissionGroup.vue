@@ -1,10 +1,10 @@
 <template>
-  <el-select v-model="optionValue" :placeholder="$t('permissionGroup')">
+  <el-select v-model="optionValue" clearable  :placeholder="$t('permissionGroup')">
     <el-option v-for="item in items" :label="item.name" :value="item.id" :key="item.id"></el-option>
   </el-select>
 </template>
 <script>
-  import { getPermissionGroupList } from '../../api/permissionGroup'
+  import { getPermissionGroupAll } from '../../api/permissionGroup'
   export default {
     name: 'PermissionGroupSelect',
     props: ['nowValue'],
@@ -16,7 +16,7 @@
       }
     },
     created() {
-      getPermissionGroupList().then( response  => {
+      getPermissionGroupAll().then( response  => {
         this.items = response.data.data
       })
     },

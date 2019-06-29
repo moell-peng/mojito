@@ -4,7 +4,7 @@
             class="el-menu-vertical"
             :collapse="isCollapse"
             :router="true"
-            background-color="#545c64"
+            background-color="#263238"
             text-color="#afb5bd"
             active-text-color="#ffffff">
       <div class="logo">

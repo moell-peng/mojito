@@ -74,7 +74,7 @@
           <guard-select :nowValue.sync="addForm.guard_name"></guard-select>
         </el-form-item>
         <el-form-item :label="$t('parentMenu')" prop="parent_id" :label-width="formLabelWidth">
-          <menu-tree-select :nowValue.sync="addForm.parent_id" :guardName.sync="addForm.guard_name"></menu-tree-select>
+          <menu-cascader :menu-id.sync="addForm.parent_id" :guard-name="addForm.guard_name"></menu-cascader>
         </el-form-item>
         <el-form-item :label="$t('permission')" prop="permission_name" :label-width="formLabelWidth">
           <el-input v-model="addForm.permission_name"></el-input>
@@ -104,7 +104,7 @@
           <guard-select :nowValue.sync="editForm.guard_name"></guard-select>
         </el-form-item>
         <el-form-item :label="$t('parentMenu')" prop="parent_id" :label-width="formLabelWidth">
-          <menu-tree-select :nowValue.sync="editForm.parent_id" :guardName.sync="editForm.guard_name"></menu-tree-select>
+          <menu-cascader :menu-id.sync="editForm.parent_id" :guard-name="editForm.guard_name"></menu-cascader>
         </el-form-item>
         <el-form-item :label="$t('permission')" prop="permission_name" :label-width="formLabelWidth">
           <el-input v-model="editForm.permission_name"></el-input>
@@ -129,14 +129,14 @@
   import GuardSelect from '../../../components/Select/Guard'
   import { getMenuList, addMenu, editMenu, deleteMenu } from '../../../api/menu'
   import { tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
-  import MenuTreeSelect from '../../../components/Select/MenuTree.vue'
+  import MenuCascader from '../../../components/Cascader/Menu'
   import { hasPermission } from '../../../libs/permission'
 
   export default {
     name: 'adminUserIndex',
     components: {
       GuardSelect,
-      MenuTreeSelect
+      MenuCascader
     },
     data: () => ({
       ...tableDefaultData(),

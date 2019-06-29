@@ -9,7 +9,7 @@ use Moell\Mojito\Tests\TestCase;
 
 class AdminUserFactoryTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setUpTheTestEnvironment();
     }

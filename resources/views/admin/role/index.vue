@@ -108,9 +108,11 @@
   import { responseDataFormat, tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
   import { hasPermission } from '../../../libs/permission'
   import GuardSelect from '../../../components/Select/Guard'
+  import { queryParams } from "../../../mixins/queryParams"
 
   export default {
     name: 'roleIndex',
+    mixins:[queryParams],
     components: {
       GuardSelect
     },
@@ -157,7 +159,7 @@
       },
       requestData() {
         this.loading = true
-        getRoleList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
+        getRoleList({...this.queryParams, page: this.queryPage}).then( response => {
           responseDataFormat(response, this)
         })
       },

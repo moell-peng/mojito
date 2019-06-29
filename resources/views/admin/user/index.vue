@@ -109,12 +109,14 @@
   import { responseDataFormat, tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
   import { hasPermission } from '../../../libs/permission'
   import UserAssignRole from "../../../components/User/AssignRole";
+  import { queryParams } from "../../../mixins/queryParams"
 
   export default {
     name: 'adminUserIndex',
     components: {
       UserAssignRole
     },
+    mixins:[queryParams],
     data() {
       return {
         ...tableDefaultData(),
@@ -174,7 +176,7 @@
       },
       requestData () {
         this.loading = true
-        getAdminUserList({...this.queryParams, page:this.pagination.currentPage}).then( response => {
+        getAdminUserList({...this.queryParams, page: this.queryPage}).then( response => {
           responseDataFormat(response, this)
         })
       },

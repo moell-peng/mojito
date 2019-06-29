@@ -68,7 +68,7 @@ class MojitoServiceProvider extends ServiceProvider
 
         $paths = [];
         foreach ($items as $key => $name) {
-            $paths[$migrationsPath . $name] = database_path('migrations') . "/". $this->formatTimetamp($key+1) . '_' . $name;
+            $paths[$migrationsPath . $name] = database_path('migrations') . "/". $this->formatTimestamp($key+1) . '_' . $name;
         }
 
         $this->publishes($paths, 'migrations');
@@ -78,7 +78,7 @@ class MojitoServiceProvider extends ServiceProvider
      * @param $addition
      * @return false|string
      */
-    private function formatTimetamp($addition)
+    private function formatTimestamp($addition)
     {
         return date('Y_m_d_His', time() + $addition);
     }

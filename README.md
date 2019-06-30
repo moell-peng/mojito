@@ -33,7 +33,7 @@ Mojito is a backend management system based on Laravel, Vue, Element.
 | Laravel  | Mojito admin |
 | -------- | ------------ |
 | 5.5, 5.6 | 1.0.*        |
-| 5.7      | 1.1.*        |
+| 5.7+      | 1.1.*        |
 
 ## Installation
 
@@ -116,7 +116,7 @@ Install JavaScript Dependencies
 
 ```shell
 npm install
-npm install -D vuex@~3.0.1 vue-router@~3.0.1 vue-i18n@~8.1.0 localforage@~1.7.2 element-ui@~2.4.6
+npm install -D vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1
 ```
 
 Add admin.js to webpack.mix.js

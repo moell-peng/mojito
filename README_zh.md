@@ -29,7 +29,7 @@ Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
 | Laravel  | Mojito |
 | -------- | ------ |
 | 5.5, 5.6 | 1.0.*  |
-| 5.7      | 1.1.*  |
+| 5.7+      | 1.1.*  |
 
 ## 安装
 
@@ -112,7 +112,7 @@ export default {
 
 ```shell
 npm install
-npm install -D vuex@~3.0.1 vue-router@~3.0.1 vue-i18n@~8.1.0 localforage@~1.7.2 element-ui@~2.4.6
+npm install -D vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1
 ```
 
 将 admin.js  添加到 webpack.mix.js 

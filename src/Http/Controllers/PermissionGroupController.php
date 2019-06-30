@@ -27,6 +27,18 @@ class PermissionGroupController extends Controller
     }
 
     /**
+     *  @author moell<moell91@foxmail.com>
+     * @param Request $request
+     * @return PermissionGroupCollection
+     */
+    public function all(Request $request)
+    {
+        $permissionGroups = PermissionGroup::latest()->get();
+
+        return new PermissionGroupCollection($permissionGroups);
+    }
+
+    /**
      * @param $guardName
      * @return \Illuminate\Http\JsonResponse
      */

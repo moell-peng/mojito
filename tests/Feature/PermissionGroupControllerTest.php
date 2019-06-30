@@ -18,6 +18,22 @@ class permissionGroupControllerTest extends FeatureTestCase
             ]));
     }
 
+    public function test_get_permission_group_all()
+    {
+        $response = $this->get(route('permission-group.all'), $this->jsonHeader());
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    [
+                        'id' => true,
+                        'name' => true
+                    ]
+                ]
+            ]);
+    }
+
     public function test_get_guard_name_group_permissions()
     {
         $response = $this->get(route('permission-group.guard-name-for-permission', ['guardName' => 'admin']), $this->jsonHeader());

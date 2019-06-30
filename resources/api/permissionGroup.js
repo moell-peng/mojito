@@ -8,6 +8,10 @@ export const getPermissionGroupList = (params) => {
   })
 }
 
+export const getPermissionGroupAll = () => {
+  return http.get(`${basicRoute}-all`)
+}
+
 export const guardNameForPermissions = (guardName) => {
   return http.get(`/api/guard-name-for-permissions/${guardName}`)
 }

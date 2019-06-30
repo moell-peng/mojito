@@ -10,7 +10,7 @@ class ResponseTest extends TestCase
 {
     use MojitoResponse;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->setUpTheTestEnvironment();
     }

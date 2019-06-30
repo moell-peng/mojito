@@ -176,6 +176,11 @@ class MojitoTableSeeder extends Seeder
             'name' => 'permission-group.guard-name-for-permission',
             'display_name' => 'Guard name for permissions',
             'pg_id' => 5
+        ],
+        [
+            'name' => 'permission-group.all',
+            'display_name' => 'All permission groups',
+            'pg_id' => 5
         ]
     ];
 

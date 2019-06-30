@@ -46,7 +46,7 @@ class PermissionController extends Controller
      */
     public function store(CreateOrUpdateRequest $request)
     {
-        $attributes = request_intersect([
+        $attributes = $request->only([
             'pg_id', 'name', 'guard_name', 'display_name', 'icon', 'sequence', 'description'
         ]);
         $attributes['created_name'] = Auth::user()->name;
@@ -66,7 +66,7 @@ class PermissionController extends Controller
     {
         $permission = Permission::query()->findOrFail($id);
 
-        $attributes = request_intersect([
+        $attributes = $request->only([
             'pg_id', 'name', 'guard_name', 'display_name', 'icon', 'sequence', 'description'
         ]);
 

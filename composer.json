@@ -1,6 +1,7 @@
 {
     "name": "moell/mojito",
     "description": "Mojito admin is a component of laravel, vue, element build backend system.",
+    "keywords": ["laravel", "admin", "vue", "element", "laravel admin", "vue admin", "element admin"],
     "type": "library",
     "license": "MIT",
     "authors": [

@@ -156,8 +156,8 @@ password: secret
 ## Reward
 
 <p>
-	<img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnvxa4j20dw0dwdic.jpg" width="250" />
-  <img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnr0dhj20dw0dwgp0.jpg" width="250" />
+  <img src="http://blog-image.moell.cn/alipay.jpg" width="250" />
+  <img src="http://blog-image.moell.cn/wepay.jpg" width="250" />
 </p>
 
 ## License

@@ -4,7 +4,7 @@ Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
 
 ## 截图
 
-![](http://ww1.sinaimg.cn/large/7a679ca1gy1fvrktohzfaj213x0ieq3j.jpg)
+![](http://blog-image.moell.cn/mojito-admin.jpg)
 
 ## 特征
 
@@ -154,8 +154,8 @@ password: secret
 ## 打赏
 
 <p>
-  <img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnvxa4j20dw0dwdic.jpg" width="250" />
-  <img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnr0dhj20dw0dwgp0.jpg" width="250" />
+  <img src="http://blog-image.moell.cn/alipay.jpg" width="250" />
+  <img src="http://blog-image.moell.cn/wepay.jpg" width="250" />
 </p>
 
 ## License

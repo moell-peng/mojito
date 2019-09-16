@@ -12,7 +12,7 @@
     "require": {
         "php": ">=7.0.0",
         "smartins/passport-multiauth": "~4.0",
-        "spatie/laravel-permission": "~2.12"
+        "spatie/laravel-permission": "^3.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.5",

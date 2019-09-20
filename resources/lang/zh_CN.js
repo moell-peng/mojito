@@ -17,6 +17,11 @@ export default {
     closeRight: '关闭右边',
     closeOther: '关闭其他',
   },
+  login: {
+    title: '后台登陆',
+    submit: '登陆',
+    reset: '重置',
+  },
   name: '名称',
   email: '邮箱',
   search: '查询',

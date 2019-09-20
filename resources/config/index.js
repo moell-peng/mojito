@@ -1,8 +1,8 @@
 export default {
   admin: {
     authorize: {
-      clientId: 2,
-      clientSecret: '0amTuj8HL4BlPtUs8StQCNiKnNiPHdMg3qDPgOXa'
+      clientId: process.env.MIX_CLIENT_ID || 2,
+      clientSecret: process.env.MIX_CLIENT_SECRET || ''
     },
     loginRouteName: 'adminLogin',
 
@@ -11,11 +11,11 @@ export default {
     dashboardFullPath: '/admin/dashboard',
 
     appName: {
-      fullName: 'Mojito Admin',
-      abbrName: 'Mojito'
+      fullName: process.env.MIX_APP_NAME || 'admin dashboard',
+      abbrName: process.env.MIX_APP_ABBR_NAME || 'admin'
     },
 
-    locale: 'en'
+    locale: process.env.MIX_APP_LOCALE || 'en'
   },
 
   guardNames: [

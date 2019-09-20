@@ -96,16 +96,10 @@ Passport 安装和配置
 php artisan passport:install
 ```
 
-执行成功后获取到相应的密码授予客户端的 ID 和 secret 并且配置到相对应的 `resources/config/index.js` :
-
+执行成功后获取到相应的密码授予客户端的 ID 和 secret 并且配置到 .env:
 ```
-export default {
-  admin: {
-    authorize: {
-      clientId: ID,
-      clientSecret: secret
-    }
-}
+MIX_CLIENT_ID=2
+MIX_CLIENT_SECRET=AtejVSZclgemDnvtRZ1Rns576tPNmzYhpIgtT1eP
 ```
 
 安装 Javscript 依赖

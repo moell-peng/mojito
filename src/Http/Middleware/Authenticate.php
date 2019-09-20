@@ -17,8 +17,8 @@ class Authenticate
     public function handle($request, \Closure $next)
     {
         $permission = Route::currentRouteName();
-
-        if (Auth::user()->can($permission)) {
+        
+        if (in_array($permission, config('mojito.access_route')) || Auth::user()->can($permission)) {
             return $next($request);
         }
 

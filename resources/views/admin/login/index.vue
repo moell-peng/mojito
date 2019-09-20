@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="login-container">
-      <h2>Mojito Admin</h2>
+      <h2>{{$t('login.title')}}</h2>
       <el-form-item label="Username" prop="username">
         <el-input  v-model="ruleForm.username" auto-complete="off"></el-input>
       </el-form-item>
@@ -11,19 +11,24 @@
       <el-form-item>
         <el-button type="primary" plain @click="submitForm('ruleForm')">Submit</el-button>
         <el-button plain @click="resetForm('ruleForm')">Reset</el-button>
+
+        <el-select>
+
+        </el-select>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
   import { mapActions } from 'vuex'
-
+  import i18n from '@/lang'
   export default {
     data() {
       return {
+        lang: i18n,
         ruleForm: {
-          username: '',
-          password: ''
+          username: 'admin@admin.com',
+          password: 'secret'
         },
         rules: {
           username: [
@@ -57,6 +62,13 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }
+    },
+    mounted() {
+      // this.watermark('我是水印的文案')
+    },
+    beforeDestroy() {
+      // this.watermark()
+      // console.log(this)
     }
   }
 </script>

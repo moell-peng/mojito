@@ -13,10 +13,13 @@ return [
 
         'auth' => env('MOJITO_SUPER_ADMIN_AUTH', 'auth:admin'),
 
-        'guard' => env('MOJITO_SUPER_ADMIN_GRARD', 'admin')
+        'guard' => env('MOJITO_SUPER_ADMIN_GRARD', 'admin'),
     ],
 
     'multi_auth_guards' => env('MOJITO_MULTI_AUTH_GUARDS'),
 
-    'admin_route_path' => env('ADMIN_ROUTE_PATH', 'mojito')
+    'admin_route_path' => env('ADMIN_ROUTE_PATH', 'mojito'),
+
+    'access_route' => ['permission.all-user-permission', 'menu.my'],
+
 ];

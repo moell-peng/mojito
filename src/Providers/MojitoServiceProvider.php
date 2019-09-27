@@ -2,7 +2,6 @@
 
 namespace Moell\Mojito\Providers;
 
-
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
@@ -26,19 +25,23 @@ class MojitoServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([
-                __DIR__.'/../../config/mojito.php' => config_path('mojito.php'),
+                __DIR__ . '/../../config/mojito.php' => config_path('mojito.php'),
             ], 'config');
 
             $path = version_compare(app()->version(), '5.7.0', '>=')
-                ? base_path('resources/js')
-                : base_path('resources/assets/js');
+            ? base_path('resources/js')
+            : base_path('resources/assets/js');
 
             $this->publishes([
-                __DIR__.'/../../resources' => $path
+                __DIR__ . '/../../resources' => $path,
             ]);
 
             $this->publishes([
-                __DIR__.'/../../views' => base_path('resources/views')
+                __DIR__ . '/../../views' => base_path('resources/views'),
+            ]);
+
+            $this->publishes([
+                __DIR__ . '/../../lang' => base_path('resources/lang'),
             ]);
         }
 
@@ -63,12 +66,12 @@ class MojitoServiceProvider extends ServiceProvider
             'create_admin_table.php',
             'add_custom_field_permission_tables.php',
             'create_menu_table.php',
-            'create_permission_group_table.php'
+            'create_permission_group_table.php',
         ];
 
         $paths = [];
         foreach ($items as $key => $name) {
-            $paths[$migrationsPath . $name] = database_path('migrations') . "/". $this->formatTimestamp($key+1) . '_' . $name;
+            $paths[$migrationsPath . $name] = database_path('migrations') . "/" . $this->formatTimestamp($key + 1) . '_' . $name;
         }
 
         $this->publishes($paths, 'migrations');
@@ -91,9 +94,9 @@ class MojitoServiceProvider extends ServiceProvider
     private function registerRouter()
     {
         if (strpos($this->app->version(), 'Lumen') === false && !$this->app->routesAreCached()) {
-            app('router')->middleware('api')->group(__DIR__.'/../routes.php');
+            app('router')->middleware('api')->group(__DIR__ . '/../routes.php');
         } else {
-            require __DIR__.'/../routes.php';
+            require __DIR__ . '/../routes.php';
         }
 
         Passport::routes();

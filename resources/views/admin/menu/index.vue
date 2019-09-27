@@ -80,7 +80,7 @@
           <el-input v-model="addForm.permission_name"></el-input>
         </el-form-item>
         <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
-          <el-input v-model="addForm.icon"></el-input>
+          <select-icon v-model="addForm.icon" />
         </el-form-item>
         <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
           <el-input v-model.number="addForm.sequence"></el-input>
@@ -110,7 +110,7 @@
           <el-input v-model="editForm.permission_name"></el-input>
         </el-form-item>
         <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
-          <el-input v-model="editForm.icon"></el-input>
+          <select-icon v-model="editForm.icon" />
         </el-form-item>
         <el-form-item :label="$t('sequence')" prop="sequence" :label-width="formLabelWidth">
           <el-input v-model.number="editForm.sequence"></el-input>
@@ -127,6 +127,7 @@
 <script>
   import Vue from 'vue'
   import GuardSelect from '../../../components/Select/Guard'
+  import SelectIcon from '../../../components/Select/SelectIcon'
   import { getMenuList, addMenu, editMenu, deleteMenu } from '../../../api/menu'
   import { tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
   import MenuCascader from '../../../components/Cascader/Menu'
@@ -136,7 +137,8 @@
     name: 'adminUserIndex',
     components: {
       GuardSelect,
-      MenuCascader
+      MenuCascader,
+      SelectIcon
     },
     data: () => ({
       ...tableDefaultData(),

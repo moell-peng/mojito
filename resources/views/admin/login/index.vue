@@ -11,21 +11,15 @@
       <el-form-item>
         <el-button type="primary" plain @click="submitForm('ruleForm')">Submit</el-button>
         <el-button plain @click="resetForm('ruleForm')">Reset</el-button>
-
-        <el-select>
-
-        </el-select>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
   import { mapActions } from 'vuex'
-  import i18n from '@/lang'
   export default {
     data() {
       return {
-        lang: i18n,
         ruleForm: {
           username: 'admin@admin.com',
           password: 'secret'

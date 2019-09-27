@@ -13,17 +13,12 @@
         <div class="avatar">
           <el-dropdown>
             <el-button :plain="true">
-              <img src="http://blog-image.moell.cn/avatars/wxspzIISH98xMRzV68phGyxsEWPY6mnsBtYxRGP8.jpeg" width="30" height="30" style="border-radius:30px">
+              <img src="https://via.placeholder.com/30x30" width="30" height="30" style="border-radius:30px">
               <i class="el-icon-arrow-down el-icon--right"></i>
             </el-button>
             <el-dropdown-menu slot="dropdown">
-              <a href="https://github.com/moell-peng/mojito" target="_blank" v-if="showAuthorGitHubUrl">
-                <el-dropdown-item>
-                  Github
-                </el-dropdown-item>
-              </a>
               <el-dropdown-item @click.native="openDialogChangePasswordForm">{{ $t('changePassword') }} </el-dropdown-item>
-              <el-dropdown-item @click.native="logout">Logout</el-dropdown-item>
+              <el-dropdown-item @click.native="logout">{{ $t('logout') }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>

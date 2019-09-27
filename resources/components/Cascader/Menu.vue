@@ -2,7 +2,6 @@
   <el-cascader
           v-model="optionValue"
           placeholder="Please choose"
-          change-on-select
           clearable
           :options="options"
           :props = "defaultProps">
@@ -26,6 +25,7 @@
         options:[],
         optionValue: [],
         defaultProps: {
+          checkStrictly: true,
           children: 'children',
           label: 'name',
           value: "id"

@@ -12,7 +12,7 @@ const messages = {
     ...enLocale,
     ...elementEnLocale
   },
-  zh: {
+  zh_CN: {
     ...zhLocale,
     ...elementZhLocale
   }

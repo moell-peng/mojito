@@ -101,10 +101,6 @@ export default {
 </script>
 
 <style lang="scss">
-$--color-primary: #339999; //#13A1CC;
-$--color-success: #24C577;
-$--color-info: #AFB1B4;
-
 @import "~element-ui/packages/theme-chalk/src/common/var.scss";
 .mod-input {
   width: 80%;
@@ -214,7 +210,7 @@ $--color-info: #AFB1B4;
         width: 100%;
         height: 100%;
         font-size: 16px;
-        line-height: $size;// - ($scope * 2);
+        line-height: $size - ($scope * 2);
         color: $--color-white;
         background-color: $--color-primary;
       }

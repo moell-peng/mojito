@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateMenuTable  extends Migration
+class CreateMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateMenuTable  extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->default(0);
-            $table->string('icon', 50)->nullable();
+            $table->string('icon')->nullable();
             $table->string('uri');
             $table->tinyInteger('is_link')->default(0)->comment('0-no;1-yes');
             $table->string('permission_name', 50)->nullable();

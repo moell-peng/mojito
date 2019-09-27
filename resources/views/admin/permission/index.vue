@@ -37,8 +37,11 @@
               :label="$t('permissionGroup')">
       </el-table-column>
       <el-table-column
-              prop="icon"
+              align="center"
               :label="$t('icon')">
+        <template slot-scope="scope">
+          <i :class="scope.row.icon"></i>
+        </template>
       </el-table-column>
       <el-table-column
               fixed="right"
@@ -94,7 +97,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
-              <el-input v-model="addForm.icon"></el-input>
+              <select-icon v-model="addForm.icon" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -142,7 +145,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item :label="$t('icon')" prop="icon" :label-width="formLabelWidth">
-              <el-input v-model="editForm.icon"></el-input>
+              <select-icon v-model="editForm.icon" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -167,6 +170,7 @@
   import { getPermissionList, addPermission, editPermission, deletePermission } from '../../../api/permission'
   import { responseDataFormat, tableDefaultData, editSuccess, addSuccess, deleteSuccess } from '../../../libs/tableDataHandle'
   import GuardSelect from '../../../components/Select/Guard'
+  import SelectIcon from '../../../components/Select/SelectIcon'
   import PermissionGroupSelect from "../../../components/Select/PermissionGroup";
   import { hasPermission } from "../../../libs/permission"
   import { queryParams } from "../../../mixins/queryParams"
@@ -174,7 +178,7 @@
   export default {
     name: 'permissionIndex',
     components: {
-      PermissionGroupSelect, GuardSelect
+      PermissionGroupSelect, GuardSelect, SelectIcon
     },
     mixins:[queryParams],
     data() {

@@ -67,7 +67,7 @@ class permissionGroupControllerTest extends FeatureTestCase
         $permissionGroup = PermissionGroup::query()->first();
 
         $response = $this->get(
-            route('permission-group.show', ['permission-group' => $permissionGroup->id]), $this->jsonHeader()
+            route('permission-group.show', ['permission_group' => $permissionGroup->id]), $this->jsonHeader()
         );
 
         $response
@@ -84,7 +84,7 @@ class permissionGroupControllerTest extends FeatureTestCase
         $permissionGroup = PermissionGroup::query()->first();
 
         $response = $this->patch(
-            route('permission-group.update', ['permission-group' => $permissionGroup->id]), $data, $this->jsonHeader()
+            route('permission-group.update', ['permission_group' => $permissionGroup->id]), $data, $this->jsonHeader()
         );
 
         $response->assertStatus(204);
@@ -98,7 +98,7 @@ class permissionGroupControllerTest extends FeatureTestCase
     {
         $permissionGroup = PermissionGroup::query()->first();
 
-        $response = $this->delete(route('permission-group.destroy', ['permission-group' => $permissionGroup->id]));
+        $response = $this->delete(route('permission-group.destroy', ['permission_group' => $permissionGroup->id]));
 
         $response->assertStatus(422);
 
@@ -106,7 +106,7 @@ class permissionGroupControllerTest extends FeatureTestCase
             'name' => 'test'
         ]);
 
-        $newResponse = $this->delete(route('permission-group.destroy', ['permission-group' => $new->id]));
+        $newResponse = $this->delete(route('permission-group.destroy', ['permission_group' => $new->id]));
 
         $newResponse->assertStatus(204);
         $this->assertNull(PermissionGroup::query()->find($new->id));

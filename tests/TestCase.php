@@ -2,6 +2,7 @@
 
 namespace Moell\Mojito\Tests;
 
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Laravel\Passport\PassportServiceProvider;
 use Moell\Mojito\Models\AdminUser;
 use Moell\Mojito\Providers\MojitoServiceProvider;
@@ -14,6 +15,8 @@ use Spatie\Permission\PermissionServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+    use ArraySubsetAsserts;
+
     protected function setUp(): void
     {
         parent::setUp();

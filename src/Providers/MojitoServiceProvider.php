@@ -35,11 +35,11 @@ class MojitoServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__.'/../../resources' => $path
-            ]);
+            ], 'views');
 
             $this->publishes([
                 __DIR__.'/../../views' => base_path('resources/views')
-            ]);
+            ], 'views');
         }
 
         $this->registerRouter();

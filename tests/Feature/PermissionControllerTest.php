@@ -45,7 +45,7 @@ class PermissionControllerTest extends FeatureTestCase
 
     public function test_permission_id_for_details()
     {
-        $permission = Permission::query()->first();
+        $permission = Permission::query()->first(['id', 'name', 'guard_name', 'display_name', 'icon', 'sequence', 'description']);
 
         $response = $this->get(route('permission.show', ['permission' => $permission->id]), $this->jsonHeader());
         $response

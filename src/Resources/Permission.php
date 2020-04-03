@@ -3,9 +3,9 @@
 namespace Moell\Mojito\Resources;
 
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class Permission extends Resource
+class Permission extends JsonResource
 {
     public function toArray($request)
     {

@@ -13,7 +13,7 @@
         <div class="avatar">
           <el-dropdown>
             <el-button :plain="true">
-              <img src="http://blog-image.moell.cn/avatars/wxspzIISH98xMRzV68phGyxsEWPY6mnsBtYxRGP8.jpeg" width="30" height="30" style="border-radius:30px">
+              <i class="el-icon-user-solid"></i>
               <i class="el-icon-arrow-down el-icon--right"></i>
             </el-button>
             <el-dropdown-menu slot="dropdown">

@@ -88,8 +88,7 @@
         this.$store.getters.tags.forEach((item, index) => {
           if (item.fullPath === this.$route.fullPath) {
             flag = true
-          }
-          if (item.closable && flag) {
+          } else if (item.closable && flag) {
             tagList.push(index)
           }
         })

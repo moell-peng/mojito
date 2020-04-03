@@ -35,6 +35,7 @@ Mojito is a backend management system based on Laravel, Vue, Element.
 | 5.5, 5.6 | 1.0.*        |
 | 5.7,5.8      | 1.1.*        |
 | 6.x       | 1.2.*        |
+| 7.x       | 1.3.*        |
 
 ## Installation
 

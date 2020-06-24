@@ -9,6 +9,7 @@ import { Message } from 'element-ui'
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   saveScrollPosition: true,
   routes
 })

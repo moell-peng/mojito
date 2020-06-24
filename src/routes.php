@@ -54,9 +54,7 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         $router->patch('user-change-password', 'ChangePasswordController@changePassword')->name('user.change-password');
     });
 
-$router->namespace('\Moell\Mojito\Http\Controllers')->middleware('web')->group(function ($router) {
-    $router->view(config('mojito.admin_route_path'), 'dashboard');
-});
+$router->view(config('mojito.admin_route_path') . "/{path}" , 'dashboard')->where("path", ".*")->middleware('web');
 
 $router->middleware(['api', config('mojito.super_admin.auth') . ',' . config('mojito.multi_auth_guards')])
     ->patch('api/user-change-password', '\Moell\Mojito\Http\Controllers\ChangePasswordController@changePassword')->name('user.change-password');

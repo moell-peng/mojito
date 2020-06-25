@@ -18,5 +18,14 @@ return [
 
     'multi_auth_guards' => env('MOJITO_MULTI_AUTH_GUARDS'),
 
-    'admin_route_path' => env('ADMIN_ROUTE_PATH', 'admin')
+    'admin_route_path' => env('ADMIN_ROUTE_PATH', 'admin'),
+
+    'guards' => [
+        'admin' => [
+            'model' => \Moell\Mojito\Models\AdminUser::class,
+            'login_fields' => [
+                'email'
+            ]
+        ]
+    ]
 ];

@@ -12,6 +12,7 @@
     "require": {
         "php": "^7.2.0",
         "spatie/laravel-permission": "~3.2",
+        "laravel/sanctum": "^2.4",
         "smartins/passport-multiauth": "~7.0.0"
     },
     "require-dev": {

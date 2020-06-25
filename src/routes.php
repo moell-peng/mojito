@@ -56,5 +56,13 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
 
 $router->view(config('mojito.admin_route_path') . "/{path}" , 'dashboard')->where("path", ".*")->middleware('web');
 
+$router->namespace('\Moell\Mojito\Http\Controllers')
+    ->prefix('api')
+    ->middleware("api")
+    ->group(function ($router) {
+        $router->post("auth/login", "LoginController@authenticate");
+        $router->get("auth/me", "LoginController@me")->middleware('auth:sanctum');
+    });
+
 $router->middleware(['api', config('mojito.super_admin.auth') . ',' . config('mojito.multi_auth_guards')])
     ->patch('api/user-change-password', '\Moell\Mojito\Http\Controllers\ChangePasswordController@changePassword')->name('user.change-password');

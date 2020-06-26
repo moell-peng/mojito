@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
     } else {
       let login = new Promise((resolve, reject) => {
         getToken(provider).then( token => {
-          if (!token || !token.hasOwnProperty('access_token') || ((new Date().getTime() - token.created_at) / 1000) >= token.expires_in) {
+          if (!token || !token.hasOwnProperty('token')) {
             reject({ name : providerConfig.loginRouteName})
           } else {
             if (!store.getters.token) {

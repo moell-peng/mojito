@@ -16,7 +16,7 @@ class LoginController extends Controller
 {
     public function authenticate(Request $request)
     {
-        $config = data_get(config("mojito.guards"), $request->guard);
+        $config = data_get(config("mojito.providers"), $request->provider);
         if (! $config) {
             return $this->forbidden("Undefined guard");
         }
@@ -39,14 +39,13 @@ class LoginController extends Controller
         }
 
         PersonalAccessToken::query()->where("tokenable_type", $config['model'])
-            ->where("name", $request->guard)
+            ->where("name", $request->provider)
             ->where("tokenable_id", $user->id)
             ->delete();
 
         return response()->json([
             'data' => [
-                'token' => $user->createToken($request->guard)->plainTextToken,
-                'user' => $user
+                'token' => $user->createToken($request->provider)->plainTextToken,
             ]
         ]);
     }

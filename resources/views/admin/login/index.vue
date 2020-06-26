@@ -44,7 +44,6 @@
           if (valid) {
             this.loginHandle({
               ...this.ruleForm,
-              ...this.$config[this.$provider].authorize,
               provider: this.$provider
             }).then(result => {
               this.$router.push({

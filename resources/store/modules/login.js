@@ -19,14 +19,11 @@ const mutations = {
 }
 
 const actions = {
-  loginHandle ({ commit }, { username, password, clientId, clientSecret, provider }) {
+  loginHandle ({ commit }, { username, password, provider }) {
     return new Promise((resolve, reject) => {
       return login(arguments[1])
         .then(response => {
-          const token = {
-            ...response.data,
-            created_at: new Date().getTime()
-          }
+          const token = response.data.data
 
           commit('SET_TOKEN', {token, provider})
 

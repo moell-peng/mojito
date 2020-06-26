@@ -229,7 +229,7 @@ class MojitoTableSeeder extends Seeder
         Permission::query()->delete();
 
         foreach ($this->permissions as $permission) {
-            $permission['guard_name'] = config('mojito.super_admin.guard');
+            $permission['guard_name'] = 'admin';
             Permission::create($permission);
         }
     }
@@ -268,7 +268,7 @@ class MojitoTableSeeder extends Seeder
         Role::query()->delete();
         Role::create([
             'name' => 'admin',
-            'guard_name' => config('mojito.super_admin.guard')
+            'guard_name' => 'admin'
         ]);
     }
 
@@ -285,7 +285,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/dashboard',
                 'name'      => 'Dashboard',
                 'icon'      => 'mofont mo-icon-dashboard mo-menu',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 2,
@@ -293,7 +293,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/admin',
                 'name'      => 'Admin',
                 'icon'      => 'mofont mo-icon-admin mo-menu',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 3,
@@ -301,7 +301,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/admin-user',
                 'name'      => 'Admin user',
                 'icon'      => '',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 4,
@@ -309,7 +309,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/role',
                 'name'      => 'Role',
                 'icon'      => '',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 5,
@@ -317,7 +317,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/permission',
                 'name'      => 'Permission',
                 'icon'      => '',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 6,
@@ -325,7 +325,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/permission-group',
                 'name'      => 'Permission Group',
                 'icon'      => '',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
             [
                 'id'        => 7,
@@ -333,7 +333,7 @@ class MojitoTableSeeder extends Seeder
                 'uri'       => '/admin/menu',
                 'name'      => 'Menu',
                 'icon'      => '',
-                'guard_name'=> config('mojito.super_admin.guard')
+                'guard_name'=> 'admin'
             ],
 
         ]);

@@ -7,7 +7,10 @@ return [
         'admin' => [
             'model' => \Moell\Mojito\Models\AdminUser::class,
             'login_fields' => [
-                'email'
+                'email',
+            ],
+            'conditions' => [
+                //['status', '=', 1]
             ]
         ]
     ]

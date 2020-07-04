@@ -62,11 +62,11 @@ class RoleControllerTest extends FeatureTestCase
 
     public function test_guard_name_for_roels()
     {
-        $response = $this->get(route('role.guard-name-roles', ['guardName' => config('mojito.super_admin.guard')]), $this->jsonHeader());
+        $response = $this->get(route('role.guard-name-roles', ['guardName' => 'admin']), $this->jsonHeader());
 
         $response->assertStatus(200)->assertJson([
             'data' => [
-                ['guard_name' => config('mojito.super_admin.guard')]
+                ['guard_name' => 'admin']
             ]
         ]);
     }

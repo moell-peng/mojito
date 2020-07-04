@@ -3,6 +3,7 @@
 namespace Moell\Mojito\Tests\Unit;
 
 use Laravel\Passport\PassportServiceProvider;
+use Laravel\Sanctum\SanctumServiceProvider;
 use Moell\Mojito\Providers\MojitoServiceProvider;
 use Moell\Mojito\Tests\TestCase;
 use SMartins\PassportMultiauth\Providers\MultiauthServiceProvider;
@@ -19,12 +20,10 @@ class ServiceProviderTest extends TestCase
     {
         $providers = $this->app->getLoadedProviders();
 
-        $this->assertArrayHasKey(PassportServiceProvider::class, $providers);
-
-        $this->assertArrayHasKey(MultiauthServiceProvider::class, $providers);
-
         $this->assertArrayHasKey(PermissionServiceProvider::class, $providers);
 
         $this->assertArrayHasKey(MojitoServiceProvider::class, $providers);
+
+        $this->assertArrayHasKey(SanctumServiceProvider::class, $providers);
     }
 }

@@ -3,9 +3,7 @@
 namespace Moell\Mojito\Providers;
 
 
-use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Passport;
 use Moell\Mojito\Console\InstallCommand;
 use Route;
 
@@ -95,17 +93,5 @@ class MojitoServiceProvider extends ServiceProvider
         } else {
             require __DIR__.'/../routes.php';
         }
-
-        Passport::routes();
-
-        Route::group(['middleware' => 'oauth.providers'], function () {
-            Passport::routes(function ($router) {
-                return $router->forAccessTokens();
-            });
-        });
-
-        Passport::tokensExpireIn(Carbon::now()->addDays(config('mojito.passport_token_ttl')));
-
-        Passport::refreshTokensExpireIn(Carbon::now()->addDays(config('mojito.passport_refresh_token_ttl')));
     }
 }

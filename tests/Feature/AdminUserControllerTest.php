@@ -102,7 +102,7 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         $adminUser = AdminUser::first();
 
-        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => config('mojito.super_admin.provider')]);
+        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => 'admin']);
         $response = $this->get($route, $this->jsonHeader());
 
         $data = [];
@@ -120,7 +120,7 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         $adminUser = AdminUser::first();
 
-        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => config('mojito.super_admin.provider')]);
+        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => 'admin']);
         $response = $this->put($route, ['roles' => []], $this->jsonHeader());
 
         $response->assertStatus(204);

@@ -3,10 +3,10 @@
 namespace Moell\Mojito\Tests\Feature;
 
 
+use Laravel\Sanctum\Sanctum;
 use Moell\Mojito\AdminUserFactory;
 use Moell\Mojito\Database\MojitoTableSeeder;
 use Moell\Mojito\Tests\TestCase;
-use SMartins\PassportMultiauth\PassportMultiauth;
 
 class FeatureTestCase extends TestCase
 {
@@ -16,13 +16,11 @@ class FeatureTestCase extends TestCase
 
         $this->artisan('db:seed', ['--class' => MojitoTableSeeder::class]);
 
-        $this->passportAuth();
-    }
-
-    protected function passportAuth()
-    {
         $user = AdminUserFactory::adminUser()->first();
-        PassportMultiauth::actingAs($user);
+        Sanctum::actingAs(
+            $user,
+            ['*']
+        );
     }
 
     /**

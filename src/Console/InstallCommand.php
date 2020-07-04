@@ -29,7 +29,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
-        $this->call('vendor:publish', ['--provider' => 'SMartins\PassportMultiauth\Providers\MultiauthServiceProvider']);
         $this->call('vendor:publish', ['--provider' => 'Moell\Mojito\Providers\MojitoServiceProvider']);
+        $this->call('vendor:publish', ['--provider' => 'Laravel\Sanctum\SanctumServiceProvider']);
     }
 }

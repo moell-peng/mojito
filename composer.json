@@ -13,7 +13,7 @@
     "require": {
         "php": "^7.2.0",
         "spatie/laravel-permission": "~3.2",
-        "smartins/passport-multiauth": "~7.0.0"
+        "laravel/sanctum": "^2.4"
     },
     "require-dev": {
         "orchestra/testbench": "~5.1.0",
@@ -38,8 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Moell\\Mojito\\Providers\\MojitoServiceProvider",
-                "SMartins\\PassportMultiauth\\Providers\\MultiauthServiceProvider"
+                "Moell\\Mojito\\Providers\\MojitoServiceProvider"
             ]
         }
     },

@@ -12,8 +12,6 @@ class AdminUserFactory
      */
     public static function adminUser()
     {
-        $key = 'auth.providers.' . config('mojito.super_admin.provider') . '.model';
-
-        return app(config($key));
+        return app(config('mojito.providers.admin.model'));
     }
 }

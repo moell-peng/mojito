@@ -1,94 +1,67 @@
 # Mojito
 
-Mojito is a backend management system based on Laravel, Vue, Element.
+Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
 
-## Simplified Chinese
+## 截图
 
-[中文README](./README_zh.md)
+![mojito-admin.jpg](http://ww1.sinaimg.cn/large/7a679ca1gy1ggfdd1odgvj21420l20uj.jpg)
 
-## Screenshot
+## Demo
 
-![](http://blog-image.moell.cn/mojito-admin.jpg)
+登陆地址 `http://mojito.moell.cn/admin/login` ， 用户名 `mojito@gmail.com` ，密码 `mojito-demo`
 
-## Feature
+## 特征
 
-* Quickly derive multiple backend systems
-* Built-in role, permissions, user, menu management
-* OAuth 2.0 and support multi-table authentication
-* Complete PHPUnit test
-* The minimum unit of API privilege is routing, and the minimum unit of page privilege is button or link.
-* SPA
-* Multi-tab page
-* Support for multi-language configuration
-* Simple page layout
+* 可快速衍生多个后台系统
+* 内置角色，权限，用户，菜单管理
+* API 权限精确至路由，页面权限精确到按钮或链接
+* 完善的PHPUnit测试
+* 前后端分离
+* 多标签页
 
-## Requirements
+## 要求
 
-- Laravel  >= 5.5.0
+- Laravel  >= 7.0.0
 - Vue >= 2.5.17
-- Element >= 2.4.6
+- Element >= 2.9.1
 
-## Compatibility
+## 安装
 
-| Laravel  | Mojito admin |
-| -------- | ------------ |
-| 5.5, 5.6 | 1.0.*        |
-| 5.7,5.8      | 1.1.*        |
-| 6.x       | 1.2.*        |
-| 7.x       | 1.3.*        |
-
-## Installation
-
-First install laravel and make sure you have the correct database connection configured.
+首先安装laravel,并且确保你配置了正确的数据库连接。
 
 ```
 composer require moell/mojito
 ```
-> If there is a conflict caused by the `random_compat` version, manually add `moell/mojito` to composer.json and then `composer update` to install.
 
-Then run the following command to publish the resource:
+然后运行下面的命令来发布资源:
 
 ```
 php artisan mojito:install
 ```
 
-Successful execution of the command will generate configuration files, data migration, and building SPA files.
+命令执行成功会生成配置文件，数据迁移和构建SPA的文件。
 
-Add the appropriate guards and providers to `config/auth.php` as follows: 
-
-```
-'guards' => [
-        ...
-        'admin' => [
-            'driver' => 'passport',
-            'provider' => 'admin'
-        ]
-    ],
-
-'providers' => [
-        ...
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => \Moell\Mojito\Models\AdminUser::class,
-        ]
-    ],
-```
-
-Add `oauth.providers` and `mojito.permission` in the middle of the $routeMiddleware property in `app/Http/Kernel.php` and replace the `auth` middleware with the following:
+修改 `app/Http/Kernel.php` ：
 
 ```
 class Kernel extends HttpKernel
 {
     protected $routeMiddleware = [
-        // 'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth' => \SMartins\PassportMultiauth\Http\Middleware\MultiAuthenticate::class,
-        'oauth.providers' => \SMartins\PassportMultiauth\Http\Middleware\AddCustomProvider::class,
+        ...
         'mojito.permission' => \Moell\Mojito\Http\Middleware\Authenticate::class,
     ];
+
+    protected $middlewareGroups = [
+            ...
+            'api' => [
+                ...
+                \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            ],
+        ];
 }
 ```
 
-Perform data migration, data filling
+执行数据迁移，数据填充
 
 ```
 php artisan migrate
@@ -96,67 +69,33 @@ php artisan migrate
 php artisan db:seed --class="Moell\Mojito\Database\MojitoTableSeeder"
 ```
 
-Passport installation and configuration
-
-```
-php artisan passport:install
-```
-
-After successful execution, obtain the corresponding password to grant the client's ID and secret and configure it to the corresponding `resources/config/index.js` :
-
-```
-export default {
-  admin: {
-    authorize: {
-      clientId: ID,
-      clientSecret: secret
-    }
-}
-```
-
-Install JavaScript Dependencies
+安装 Javscript 依赖
 
 ```shell
 npm install
 npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1
 ```
 
-Add admin.js to webpack.mix.js
+将 admin.js  添加到 webpack.mix.js 
 
 ```
 mix.js('resources/js/admin.js', 'public/js');
 ```
 
-Run Mix
+运行 Mix
 
 ```
 #npm run watch
 npm run production
 ```
 
-Log in
+后台登陆地址为 `http://localhost/admin/login`， 账号 `admin@gmail.com` , 密码 `secret`
 
-url: http://localhost/mojito#/admin/login
-
-email: admin@gmail.com
-
-password: secret
-
-## Dependent on open source software
-
-* Laravel
-* Vue
-* Element UI
-* laravel/passport
-* smartins/passport-multiauth
-* spatie/laravel-permission
-* orchestra/testbench
-
-## Reward
+## 打赏
 
 <p>
-  <img src="http://blog-image.moell.cn/alipay.jpg" width="250" />
-  <img src="http://blog-image.moell.cn/wepay.jpg" width="250" />
+  <img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnvxa4j20dw0dwdic.jpg" width="250" />
+  <img src="http://ww1.sinaimg.cn/mw690/7a679ca1ly1fvxrfnr0dhj20dw0dwgp0.jpg" width="250" />
 </p>
 
 ## License

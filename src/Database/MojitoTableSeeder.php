@@ -113,18 +113,8 @@ class MojitoTableSeeder extends Seeder
             'pg_id' => 3
         ],
         [
-            'name' => 'permission.all-user-permission',
-            'display_name' => 'All permissions of the user',
-            'pg_id' => 3
-        ],
-        [
             'name' => 'menu.index',
             'display_name' => 'index',
-            'pg_id' => 4
-        ],
-        [
-            'name' => 'menu.my',
-            'display_name' => 'My menu',
             'pg_id' => 4
         ],
         [

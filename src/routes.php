@@ -9,7 +9,7 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         $router->post("auth/login", "LoginController@authenticate");
 
         $router->middleware(['auth:sanctum'])->group(function ($router) {
-            $router->get("auth/me", "LoginController@me")->name("user.me");
+            $router->post("auth/logout", "LoginController@logout")->name("auth.logout");
             $router->get('permission-user-all', 'PermissionController@allUserPermission')->name("permission.all-user-permission");
             $router->get('my-menu', 'MenuController@my')->name("menu.my");
             $router->patch('user-change-password', 'ChangePasswordController@changePassword')->name("user.change-password");

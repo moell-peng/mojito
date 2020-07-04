@@ -9,5 +9,5 @@ export const login = ({ username, password, provider }) => {
 }
 
 export const logout = () => {
-
+  return http.post('/api/auth/logout')
 }

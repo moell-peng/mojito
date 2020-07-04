@@ -50,8 +50,14 @@ class LoginController extends Controller
         ]);
     }
 
-    public function me(Request $request)
+    /**
+     * logout
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
     {
-        return Auth::user();
+        Auth::user()->currentAccessToken()->delete();
+
+        return $this->noContent();
     }
 }

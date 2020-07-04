@@ -37,7 +37,11 @@ const actions = {
 
   logoutHandle ({ commit }, provider ) {
     return new Promise((resolve, reject) => {
-      removeToken(provider)
+      return logout().then( () => {
+        removeToken(provider)
+      }).catch( error => {
+        reject(error)
+      })
     })
   }
 }

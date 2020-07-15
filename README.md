@@ -1,6 +1,6 @@
 # Mojito
 
-Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
+Mojito 是一个基于 Laravel, Vue, Element UI 构建的后台管理系统。
 
 ## 截图
 
@@ -8,7 +8,7 @@ Mojito 是一个基于 Laravel, Vue, Element构建的后台管理系统。
 
 ## Demo
 
-登陆地址 `http://mojito.moell.cn/admin/login` ， 用户名 `mojito@gmail.com` ，密码 `mojito-demo`
+登陆地址 http://mojito.moell.cn/admin/login ， 用户名 `mojito@gmail.com` ，密码 `mojito-demo`
 
 ## 特征
 

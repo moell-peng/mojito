@@ -37,4 +37,4 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
 
     });
 
-$router->view(config('mojito.admin_route_path') . "/{path}" , 'dashboard')->where("path", ".*")->middleware('web');
+$router->view(config('mojito.admin_route_path') . "/{path?}" , 'dashboard')->where("path", ".*")->middleware('web');

@@ -73,13 +73,23 @@ php artisan db:seed --class="Moell\Mojito\Database\MojitoTableSeeder"
 
 ```shell
 npm install
+# laravel < 8.0 以下
 npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1
+
+# laravel 8.0 ~ 8.5.7
+npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1 vue-template-compiler@^2.6.14 sass@^1.15.2 sass-loader@^8.0.0
+
+# laravel 8.5.7 以上
+npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 vue-loader@^15.9.7 localforage@^1.7.2 element-ui@^2.9.1 vue-template-compiler@^2.6.14 sass@^1.35.1 sass-loader@^12.1.0
 ```
 
 将 admin.js  添加到 webpack.mix.js 
 
 ```
 mix.js('resources/js/admin.js', 'public/js');
+
+# laravel 8.5.7 以上
+mix.js('resources/js/admin.js', 'public/js').vue({ version: 2 });
 ```
 
 运行 Mix

@@ -12,6 +12,6 @@ class AdminUserFactory
      */
     public static function adminUser()
     {
-        return app(config('mojito.providers.admin.model'));
+        return app(config('mojito.guards.admin.model'));
     }
 }

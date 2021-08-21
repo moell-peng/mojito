@@ -3,15 +3,8 @@
 namespace Moell\Mojito\Models;
 
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-
-class AdminUser extends Authenticatable
+class AdminUser extends User
 {
-    use HasApiTokens, Notifiable, HasRoles;
-
     protected $guard_name = 'admin';
 
     /**
@@ -20,7 +13,7 @@ class AdminUser extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'username', 'password', 'status',
     ];
 
     /**

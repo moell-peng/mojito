@@ -26,18 +26,6 @@ class MojitoServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../config/mojito.php' => config_path('mojito.php'),
             ], 'config');
-
-            $path = version_compare(app()->version(), '5.7.0', '>=')
-                ? base_path('resources/js')
-                : base_path('resources/assets/js');
-
-            $this->publishes([
-                __DIR__.'/../../resources' => $path
-            ], 'views');
-
-            $this->publishes([
-                __DIR__.'/../../views' => base_path('resources/views')
-            ], 'views');
         }
 
         $this->registerRouter();

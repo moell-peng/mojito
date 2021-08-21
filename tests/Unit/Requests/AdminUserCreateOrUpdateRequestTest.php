@@ -17,7 +17,7 @@ class AdminUserCreateOrUpdateRequestTest extends TestCase
 
         $attributes = [
             'name' => 'test',
-            'email' => 'admin@gmail.com',
+            'username' => 'test111',
             'password' => '12345544'
         ];
 

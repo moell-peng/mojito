@@ -18,7 +18,7 @@ class AdminUserControllerTest extends FeatureTestCase
         $data =  [
             'id' => true,
             'name' => true,
-            'email' => true
+            'username' => true
         ];
 
         $response->assertJson($this->paginateResponseAssertFormat($data, AdminUser::count()));
@@ -28,13 +28,13 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         factory(AdminUser::class, 79)->create();
 
-        $response = $this->get(route('admin-user.index') . '/?name=admin&email=admin@gmail.com');
+        $response = $this->get(route('admin-user.index') . '/?name=admin&username=admin');
 
         $response->assertStatus(200);
 
         $data =  [
             'name' => 'admin',
-            'email' => 'admin@gmail.com'
+            'username' => 'admin'
         ];
 
         $response->assertJson($this->paginateResponseAssertFormat($data, 1));
@@ -44,14 +44,15 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         $data = [
             'name' => '111',
-            'email' => 'admin1@gmail.com',
-            'password' => '123446dd'
+            'username' => 'admintest',
+            'password' => '123446dd',
+            'status' => 1,
         ];
 
         $response = $this->post(route('admin-user.store'), $data, $this->jsonHeader());
         $response->assertStatus(201);
 
-        $adminUser = AdminUser::where('email', $data['email'])->first();
+        $adminUser = AdminUser::where('username', $data['username'])->first();
         $this->assertNotNull($adminUser);
     }
 
@@ -65,7 +66,7 @@ class AdminUserControllerTest extends FeatureTestCase
             'data' => [
                 'id' => 1,
                 'name' => 'admin',
-                'email' => 'admin@gmail.com'
+                'username' => 'admin'
             ]
         ]);
     }
@@ -102,7 +103,7 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         $adminUser = AdminUser::first();
 
-        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => 'admin']);
+        $route = route('admin-user.roles', ['id' => $adminUser->id, 'guard' => 'admin']);
         $response = $this->get($route, $this->jsonHeader());
 
         $data = [];
@@ -120,7 +121,7 @@ class AdminUserControllerTest extends FeatureTestCase
     {
         $adminUser = AdminUser::first();
 
-        $route = route('admin-user.roles', ['id' => $adminUser->id, 'provider' => 'admin']);
+        $route = route('admin-user.roles', ['id' => $adminUser->id, 'guard' => 'admin']);
         $response = $this->put($route, ['roles' => []], $this->jsonHeader());
 
         $response->assertStatus(204);

@@ -60,9 +60,7 @@ abstract class TestCase extends BaseTestCase
     protected function setMojitoConfigs()
     {
         config(['mojito' => [
-            'admin_route_path' => env('ADMIN_ROUTE_PATH', 'admin'),
-
-            'providers' => [
+            'guards' => [
                 'admin' => [
                     'model' => \Moell\Mojito\Models\AdminUser::class,
                     'login_fields' => [

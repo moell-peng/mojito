@@ -31,7 +31,7 @@ class AdminUserController extends Controller
      */
     public function index(Request $request)
     {
-        return new AdminUserCollection($this->adminUserModel->where(request_intersect(['name', 'email']))->paginate());
+        return new AdminUserCollection($this->adminUserModel->where(request_intersect(['name', 'username']))->paginate());
     }
 
     /**
@@ -52,8 +52,9 @@ class AdminUserController extends Controller
     public function store(CreateOrUpdateRequest $request)
     {
         $data = request_intersect([
-            'name', 'email', 'password'
+            'name', 'username', 'password'
         ]);
+        $data['status'] = $request->status ? true : false;
         $data['password'] = bcrypt($data['password']);
 
         $this->adminUserModel->create($data);
@@ -72,7 +73,7 @@ class AdminUserController extends Controller
         $adminUser = $this->adminUserModel->findOrFail($id);
 
         $data = request_intersect([
-            'name'
+            'name', 'status'
         ]);
 
         if ($request->filled('password')) {
@@ -107,21 +108,21 @@ class AdminUserController extends Controller
      */
     public function roles($id, $provider)
     {
-        $user = $this->getProviderModel($provider)->findOrFail($id);
+        $user = $this->getGuardModel($provider)->findOrFail($id);
 
         return new RoleCollection($user->roles);
     }
 
     /**
-     * @author moell<moell91@foxmail.com>
      * @param $id
-     * @param $provider
+     * @param $guard
      * @param Request $request
      * @return Response
+     *@author moell<moell91@foxmail.com>
      */
-    public function assignRoles($id, $provider, Request $request)
+    public function assignRoles($id, $guard, Request $request)
     {
-        $user = $this->getProviderModel($provider)->findOrFail($id);
+        $user = $this->getGuardModel($guard)->findOrFail($id);
 
         $user->syncRoles($request->input('roles', []));
 
@@ -129,11 +130,11 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param $provider
+     * @param $guard
      * @return Illuminate\Foundation\Auth\User
      */
-    private function getProviderModel($provider)
+    private function getGuardModel($guard)
     {
-        return app(config('mojito.providers.' . $provider . '.model'));
+        return app(config('mojito.guards.' . $guard . '.model'));
     }
 }

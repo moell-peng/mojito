@@ -1,16 +1,14 @@
 <?php
 
 return [
-    'admin_route_path' => env('ADMIN_ROUTE_PATH', 'admin'),
-
-    'providers' => [
+    'guards' => [
         'admin' => [
             'model' => \Moell\Mojito\Models\AdminUser::class,
             'login_fields' => [
-                'email',
+                'username',
             ],
             'conditions' => [
-                //['status', '=', 1]
+                ['status', '=', 1]
             ]
         ]
     ]

@@ -1,29 +1,26 @@
 # Mojito
 
-Mojito 是一个基于 Laravel, Vue, Element UI 构建的后台管理系统。
+Mojito 是基于 Laravel 开发的 [Mojito Admin](https://github.com/moell-peng/mojito-admin) 的服务端。
 
-## 截图
+3.0 版本开始， 已将原来的项目分离为两个代码库，分别为以Vue3、Element Plus、Vite 开发的前端模板 [mojito -admin](https://github.com/moell-peng/mojito-admin)  和服务端 [mojito](https://github.com/moell-peng/mojito) 。如果是需要使用 vue2 版本，请访问 [2.0](https://github.com/moell-peng/mojito/tree/2.0) 分支。
 
-![mojito-admin.jpg](http://ww1.sinaimg.cn/large/7a679ca1gy1ggfdd1odgvj21420l20uj.jpg)
+## Mojito Admin 截图
 
-## Demo
+![mojito.png](http://ww1.sinaimg.cn/large/7a679ca1gy1gtu09c4avej21590kstdb.jpg)
 
-登陆地址 http://mojito.moell.cn/admin/login ， 用户名 `mojito@gmail.com` ，密码 `mojito-demo`
+## 特性
 
-## 特征
-
-* 可快速衍生多个后台系统
-* 内置角色，权限，用户，菜单管理
-* API 权限精确至路由，页面权限精确到按钮或链接
+* 前后端分离，提供 [Mojito Admin](https://github.com/moell-peng/mojito-admin) 前端模板
+* 基于 laravel-permission 权限管理
+* 基于 sanctum 鉴权 
+* 提供角色，权限，用户，菜单管理等功能的API
+* 多个后台支持统一管理权限，菜单和角色
 * 完善的PHPUnit测试
-* 前后端分离
-* 多标签页
 
 ## 要求
 
 - Laravel  >= 7.0.0
-- Vue >= 2.5.17
-- Element >= 2.9.1
+- PHP >= 7.2.0
 
 ## 安装
 
@@ -69,37 +66,41 @@ php artisan migrate
 php artisan db:seed --class="Moell\Mojito\Database\MojitoTableSeeder"
 ```
 
-安装 Javscript 依赖
+后台登录的账号 `admin` , 密码 `secret`
 
-```shell
-npm install
-# laravel < 8.0 以下
-npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1
+## 路由中间件
 
-# laravel 8.0 ~ 8.5.7
-npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 localforage@^1.7.2 element-ui@^2.9.1 vue-template-compiler@^2.6.14 sass@^1.15.2 sass-loader@^8.0.0
+* auth:sanctum 用于鉴权
+* mojito.permission 权限验证
 
-# laravel 8.5.7 以上
-npm install -D vue@^2.6.6 vuex@^3.0.1 vue-router@^3.0.1 vue-i18n@^8.1.0 vue-loader@^15.9.7 localforage@^1.7.2 element-ui@^2.9.1 vue-template-compiler@^2.6.14 sass@^1.35.1 sass-loader@^12.1.0
+## mojito.php 可选配置
+
+```php
+return [
+    'guards' => [
+        // laravel-permission 相对应的 guard
+        'admin' => [
+            'model' => \Moell\Mojito\Models\AdminUser::class, //登录健全的模型
+            'login_fields' => [	// 登录验证的字段，支持多个
+                'username',
+            ],
+            'conditions' => [ // 登录验证的额外条件
+                ['status', '=', 1]
+            ]
+        ]
+    ]
+];
 ```
 
-将 admin.js  添加到 webpack.mix.js 
+## 依赖扩展包
 
-```
-mix.js('resources/js/admin.js', 'public/js');
+* spatie/laravel-permission
+* laravel/sanctum
 
-# laravel 8.5.7 以上
-mix.js('resources/js/admin.js', 'public/js').vue({ version: 2 });
-```
+## 常见错误
 
-运行 Mix
+* csrf token missing or incorrect ， 请修改 sanctum.php 中的 `stateful` , 如 vite 使用的 `localhost:3000 `去除即可。更多详细请访问`laravel/sanctum`文档。
 
-```
-#npm run watch
-npm run production
-```
-
-后台登陆地址为 `http://localhost/admin/login`， 账号 `admin@gmail.com` , 密码 `secret`
 
 ## 打赏
 

@@ -2,11 +2,10 @@
 
 namespace Moell\Mojito\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Moell\Mojito\Http\Requests\Menu\CreateOrUpdateRequest;
 use Moell\Mojito\Models\Menu;
+use Moell\Mojito\Models\Role;
 use Moell\Mojito\Resources\Menu as MenuResource;
 
 class MenuController extends Controller
@@ -43,17 +42,17 @@ class MenuController extends Controller
      */
     public function my(Request $request)
     {
-        $guardName = data_get(Auth::user()->currentAccessToken(), "name", "admin");
+        $guardName = data_get($request->user()->currentAccessToken(), "name", "admin");
 
-        $userPermissions = Auth::user()->getAllPermissions()->pluck('name');
-        $menus = Menu::query()
+        $userPermissions = $request->user()->getAllPermissions()->pluck('name');
+        $menus = $request->user()->roles->flatMap(function (Role $role) {
+            return $role->menus()->orderBy('sequence', 'desc')->orderBy('id')->get();
+        })
             ->where('guard_name', $guardName)
-            ->orderBy('sequence', 'desc')
-            ->get()
+            ->where('is_display', true)
             ->filter(function ($item) use ($userPermissions) {
                 return !$item->permission_name || $userPermissions->contains($item->permission_name);
             });
-
         return response()->json(['data' => make_tree($menus->toArray())]);
     }
 
@@ -93,7 +92,7 @@ class MenuController extends Controller
 
         if (Menu::query()->where('parent_id', $menu->id)->count()) {
             return $this->unprocesableEtity([
-                'parent_id' => 'Please delete the submenu first.'
+                'parent_id' => 'Please delete the submenu first.',
             ]);
         }
 

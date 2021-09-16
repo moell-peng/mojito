@@ -2,9 +2,8 @@
 
 namespace Moell\Mojito\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Moell\Mojito\AdminUserFactory;
 use Moell\Mojito\Http\Requests\AdminUser\CreateOrUpdateRequest;
@@ -52,7 +51,7 @@ class AdminUserController extends Controller
     public function store(CreateOrUpdateRequest $request)
     {
         $data = request_intersect([
-            'name', 'username', 'password'
+            'name', 'username', 'password',
         ]);
         $data['status'] = $request->status ? true : false;
         $data['password'] = bcrypt($data['password']);
@@ -73,7 +72,7 @@ class AdminUserController extends Controller
         $adminUser = $this->adminUserModel->findOrFail($id);
 
         $data = request_intersect([
-            'name', 'status'
+            'name', 'status',
         ]);
 
         if ($request->filled('password')) {
@@ -136,5 +135,15 @@ class AdminUserController extends Controller
     private function getGuardModel($guard)
     {
         return app(config('mojito.guards.' . $guard . '.model'));
+    }
+
+    /**
+     * @author osi<osindex@gmail.com>
+     * @param $id
+     * @return AdminUserResource
+     */
+    public function me(Request $request)
+    {
+        return new AdminUserResource($request->user());
     }
 }

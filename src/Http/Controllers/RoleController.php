@@ -5,11 +5,11 @@ namespace Moell\Mojito\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Moell\Mojito\Http\Requests\Role\CreateOrUpdateRequest;
+use Moell\Mojito\Models\Role;
 use Moell\Mojito\Resources\PermissionCollection;
-use Moell\Mojito\Resources\RoleCollection;
 use Moell\Mojito\Resources\Role as RoleResource;
+use Moell\Mojito\Resources\RoleCollection;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
-use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -46,7 +46,7 @@ class RoleController extends Controller
     public function store(CreateOrUpdateRequest $request)
     {
         Role::create(request_intersect([
-            'name', 'guard_name', 'description'
+            'name', 'guard_name', 'description',
         ]));
 
         return $this->created();
@@ -67,7 +67,7 @@ class RoleController extends Controller
         $role = Role::query()->findOrFail($id);
 
         $role->update(request_intersect([
-            'name', 'guard_name', 'description'
+            'name', 'guard_name', 'description',
         ]));
 
         return $this->noContent();
@@ -110,6 +110,51 @@ class RoleController extends Controller
         $role = Role::query()->findOrFail($id);
 
         $role->syncPermissions($request->input('permissions', []));
+
+        return $this->noContent();
+    }
+
+    /**
+     * @author osindex<yaoiluo@gmail.com>
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function menus($id)
+    {
+        $role = Role::query()->findOrFail($id);
+        return $this->success(['data' => $role->menus->pluck('id')]);
+    }
+    /**
+     * Assign menu
+     *
+     * @author osindex<yaoiluo@gmail.com>
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignMenus($id, Request $request)
+    {
+        $role = Role::query()->findOrFail($id);
+
+        // 此接口未使用
+        $role->menus()->sync($request->input('menus', []));
+
+        return $this->noContent();
+    }
+
+    /**
+     * Toggle menu
+     *
+     * @author osindex<yaoiluo@gmail.com>
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function toggleMenus($id, Request $request)
+    {
+        $role = Role::query()->findOrFail($id);
+
+        $role->menus()->toggle($request->input('id', []));
 
         return $this->noContent();
     }

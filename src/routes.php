@@ -15,7 +15,6 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
             $router->patch('user-change-password', 'ChangePasswordController@changePassword')->name("user.change-password");
         });
 
-
         $router->middleware(['auth:sanctum', 'mojito.permission'])->group(function ($router) {
             $router->apiResources([
                 'role' => 'RoleController',
@@ -33,5 +32,12 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
             $router->get('guard-name-for-permissions/{guardName}', 'PermissionGroupController@guardNameForPermissions')
                 ->name('permission-group.guard-name-for-permission');
             $router->get("permission-group-all", "PermissionGroupController@all")->name("permission-group.all");
+
+            // add by osindex
+            $router->get('admin-me', 'AdminUserController@me')->name('admin-user.me');
+            $router->get('role/{id}/menus', 'RoleController@menus')->name('role.menus');
+            $router->put('role/{id}/menus', 'RoleController@assignMenus')->name('role.assign-menus');
+            $router->put('role/{id}/togglemenus', 'RoleController@toggleMenus')->name('role.toggle-menus');
+            // end
         });
     });

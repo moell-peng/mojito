@@ -80,7 +80,7 @@ return [
     'guards' => [
         // laravel-permission 相对应的 guard
         'admin' => [
-            'model' => \Moell\Mojito\Models\AdminUser::class, //登录健全的模型
+            'model' => \Moell\Mojito\Models\AdminUser::class, //登录鉴权的模型
             'login_fields' => [	// 登录验证的字段，支持多个
                 'username',
             ],

@@ -2,8 +2,8 @@
 
 namespace Moell\Mojito\Http\Middleware;
 
-use Auth;
-use Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class Authenticate
@@ -18,7 +18,7 @@ class Authenticate
     {
         $permission = Route::currentRouteName();
 
-        if (Auth::user()->can($permission)) {
+        if (Auth::user()->hasPermissionTo($permission)) {
             return $next($request);
         }
 

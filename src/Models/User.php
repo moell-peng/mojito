@@ -15,8 +15,9 @@ class User extends Authenticatable implements UserContact
 
     use HasApiTokens, Notifiable, HasRoles;
 
-    public function getGuardName()
+    public function guardName()
     {
         return $this->guard_name;
     }
+
 }

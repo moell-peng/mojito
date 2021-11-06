@@ -17,20 +17,20 @@ class MenuControllerTest extends FeatureTestCase
                 'data' => [
                     [
                         'id' => 1,
-                        'parent_id' => 0,
+                        'parent_id' => '0',
                         'name' => 'Dashboard',
                         'guard_name' => "admin"
                     ],
                     [
                         'id' => 2,
-                        'parent_id' => 0,
-                        'name' => 'Admin',
+                        'parent_id' => '0',
+                        'name' => '系统管理',
                         'guard_name' => "admin",
                         'children' => [
                             [
                                 'id' => 3,
-                                'parent_id' => 2,
-                                'name' => 'Admin user',
+                                'parent_id' => '2',
+                                'name' => '管理员',
                                 'guard_name' => "admin"
                             ]
                         ]
@@ -49,20 +49,20 @@ class MenuControllerTest extends FeatureTestCase
                 'data' => [
                     [
                         'id' => 1,
-                        'parent_id' => 0,
+                        'parent_id' => '0',
                         'name' => 'Dashboard',
                         'guard_name' => "admin"
                     ],
                     [
                         'id' => 2,
-                        'parent_id' => 0,
-                        'name' => 'Admin',
+                        'parent_id' => '0',
+                        'name' => '系统管理',
                         'guard_name' => "admin",
                         'children' => [
                             [
                                 'id' => 3,
-                                'parent_id' => 2,
-                                'name' => 'Admin user',
+                                'parent_id' => '2',
+                                'name' => '管理员',
                                 'guard_name' => "admin"
                             ]
                         ]

@@ -6,5 +6,5 @@ namespace Moell\Mojito\Contacts;
 
 interface UserContact
 {
-    public function getGuardName();
+    public function guardName();
 }

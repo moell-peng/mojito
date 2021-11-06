@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "php": "^7.2.0",
-        "spatie/laravel-permission": "~3.2",
+        "php": "^7.2|^8.0",
+        "spatie/laravel-permission": "^5.3",
         "laravel/sanctum": "^2.4"
     },
     "require-dev": {
@@ -20,7 +20,7 @@
         "mockery/mockery": "^1.0",
         "orchestra/database": "~5.1.0",
         "doctrine/dbal": "^2.8",
-        "dms/phpunit-arraysubset-asserts": "^0.1.0"
+        "dms/phpunit-arraysubset-asserts": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

@@ -72,7 +72,7 @@ class AdminUserController extends Controller
     {
         $adminUser = $this->adminUserModel->findOrFail($id);
 
-        $data = request_intersect([
+        $data = $request->only([
             'name', 'status'
         ]);
 

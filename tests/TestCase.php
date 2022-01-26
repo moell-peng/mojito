@@ -5,7 +5,6 @@ namespace Moell\Mojito\Tests;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Laravel\Passport\PassportServiceProvider;
 use Laravel\Sanctum\SanctumServiceProvider;
-use Moell\Mojito\Models\AdminUser;
 use Moell\Mojito\Providers\MojitoServiceProvider;
 use Moell\Mojito\Tests\Fixtures\Http\Kernel;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -59,16 +58,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function setMojitoConfigs()
     {
-        config(['mojito' => [
-            'guards' => [
-                'admin' => [
-                    'model' => \Moell\Mojito\Models\AdminUser::class,
-                    'login_fields' => [
-                        'email'
-                    ]
-                ]
-            ]
-        ]]);
+        config(['mojito' => include __DIR__ . '/../config/mojito.php']);
     }
 
     protected function setPermissionConfigs()

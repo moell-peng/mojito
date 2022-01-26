@@ -1,14 +1,17 @@
 <?php
 
+use Illuminate\Routing\Router;
+
+/** @var Router $router */
 $router = app('router');
 
 $router->namespace('\Moell\Mojito\Http\Controllers')
-    ->prefix('api')
-    ->middleware('api')
-    ->group(function ($router) {
+    ->prefix(config('mojito.route.prefix'))
+    ->middleware(config('mojito.route.root_middleware'))
+    ->group(function (Router $router) {
         $router->post("auth/login", "LoginController@authenticate");
 
-        $router->middleware(['auth:sanctum'])->group(function ($router) {
+        $router->middleware(config('mojito.route.auth_middleware'))->group(function (Router $router) {
             $router->post("auth/logout", "LoginController@logout")->name("auth.logout");
             $router->get('permission-user-all', 'PermissionController@allUserPermission')->name("permission.all-user-permission");
             $router->get('my-menu', 'MenuController@my')->name("menu.my");
@@ -16,7 +19,7 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         });
 
 
-        $router->middleware(['auth:sanctum', 'mojito.permission'])->group(function ($router) {
+        $router->middleware(config('mojito.route.manager_middleware'))->group(function (Router $router) {
             $router->apiResources([
                 'role' => 'RoleController',
                 'permission' => 'PermissionController',

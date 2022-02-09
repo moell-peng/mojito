@@ -6,12 +6,12 @@ use Illuminate\Routing\Router;
 $router = app('router');
 
 $router->namespace('\Moell\Mojito\Http\Controllers')
-    ->prefix(config('mojito.route.prefix'))
-    ->middleware(config('mojito.route.root_middleware'))
+    ->prefix(config('mojito.route.prefix', 'api'))
+    ->middleware(config('mojito.route.root_middleware', 'api'))
     ->group(function (Router $router) {
         $router->post("auth/login", "LoginController@authenticate");
 
-        $router->middleware(config('mojito.route.auth_middleware'))->group(function (Router $router) {
+        $router->middleware(config('mojito.route.auth_middleware', ['auth:sanctum']))->group(function (Router $router) {
             $router->post("auth/logout", "LoginController@logout")->name("auth.logout");
             $router->get('permission-user-all', 'PermissionController@allUserPermission')->name("permission.all-user-permission");
             $router->get('my-menu', 'MenuController@my')->name("menu.my");
@@ -19,7 +19,7 @@ $router->namespace('\Moell\Mojito\Http\Controllers')
         });
 
 
-        $router->middleware(config('mojito.route.manager_middleware'))->group(function (Router $router) {
+        $router->middleware(config('mojito.route.manager_middleware', ['auth:sanctum', 'mojito.permission']))->group(function (Router $router) {
             $router->apiResources([
                 'role' => 'RoleController',
                 'permission' => 'PermissionController',

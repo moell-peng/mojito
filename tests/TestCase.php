@@ -59,16 +59,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function setMojitoConfigs()
     {
-        config(['mojito' => [
-            'guards' => [
-                'admin' => [
-                    'model' => \Moell\Mojito\Models\AdminUser::class,
-                    'login_fields' => [
-                        'email'
-                    ]
-                ]
-            ]
-        ]]);
+        config(['mojito' => include __DIR__ . '/../config/mojito.php']);
     }
 
     protected function setPermissionConfigs()

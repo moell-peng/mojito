@@ -11,5 +11,15 @@ return [
                 ['status', '=', 1]
             ]
         ]
+    ],
+
+    'route_prefix' => "api",
+
+    'middleware' => [
+        'basic' => 'api',
+
+        'auth' => ['auth:sanctum'],
+
+        'permission' => ['auth:sanctum', 'mojito.permission']
     ]
 ];

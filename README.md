@@ -88,6 +88,15 @@ return [
                 ['status', '=', 1]
             ]
         ]
+    ],
+    'route_prefix' => "api", //路由前缀
+    
+    'middleware' => [
+        'basic' => 'api', //基础中间件
+
+        'auth' => ['auth:sanctum'], //鉴权中间件
+
+        'permission' => ['auth:sanctum', 'mojito.permission'] //包含权限检测的中间件
     ]
 ];
 ```

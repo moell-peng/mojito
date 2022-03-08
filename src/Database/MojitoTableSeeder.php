@@ -273,23 +273,23 @@ class MojitoTableSeeder extends Seeder
             [
                 'id'        => 1,
                 'parent_id' => 0,
-                'uri'       => '/admin/dashboard',
+                'uri'       => '/dashboard',
                 'name'      => 'Dashboard',
-                'icon'      => 'mofont mo-icon-dashboard mo-menu',
+                'icon'      => 'Orange',
                 'guard_name'=> 'admin'
             ],
             [
                 'id'        => 2,
                 'parent_id' => 0,
-                'uri'       => '/admin/admin',
+                'uri'       => '/admin',
                 'name'      => '系统管理',
-                'icon'      => 'mofont mo-icon-admin mo-menu',
+                'icon'      => 'Setting',
                 'guard_name'=> 'admin'
             ],
             [
                 'id'        => 3,
                 'parent_id' => 2,
-                'uri'       => '/admin/admin-user',
+                'uri'       => '/admin-user',
                 'name'      => '管理员',
                 'icon'      => '',
                 'guard_name'=> 'admin'
@@ -297,7 +297,7 @@ class MojitoTableSeeder extends Seeder
             [
                 'id'        => 4,
                 'parent_id' => 2,
-                'uri'       => '/admin/role',
+                'uri'       => '/role',
                 'name'      => '角色',
                 'icon'      => '',
                 'guard_name'=> 'admin'
@@ -305,7 +305,7 @@ class MojitoTableSeeder extends Seeder
             [
                 'id'        => 5,
                 'parent_id' => 2,
-                'uri'       => '/admin/permission',
+                'uri'       => '/permission',
                 'name'      => '权限',
                 'icon'      => '',
                 'guard_name'=> 'admin'
@@ -313,7 +313,7 @@ class MojitoTableSeeder extends Seeder
             [
                 'id'        => 6,
                 'parent_id' => 2,
-                'uri'       => '/admin/menu',
+                'uri'       => '/menu',
                 'name'      => '菜单',
                 'icon'      => '',
                 'guard_name'=> 'admin'

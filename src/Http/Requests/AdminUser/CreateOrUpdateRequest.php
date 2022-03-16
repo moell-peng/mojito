@@ -36,7 +36,7 @@ class CreateOrUpdateRequest extends FormRequest
                 $rules['username'] = 'required|unique:' . AdminUserFactory::adminUser()->getTable();
                 break;
             case 'PATCH':
-                $rules['password'] = 'min:8|max:32';
+                $rules['password'] = 'nullable|min:8|max:32';
                 break;
         }
 

@@ -21,5 +21,7 @@ return [
         'auth' => ['auth:sanctum'],
 
         'permission' => ['auth:sanctum', 'mojito.permission']
-    ]
+    ],
+
+    'captcha_cache_ttl' => 2,
 ];

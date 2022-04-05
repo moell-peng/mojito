@@ -13,7 +13,8 @@
     "require": {
         "php": "^7.2|^8.0",
         "spatie/laravel-permission": "^5.3",
-        "laravel/sanctum": "^2.4"
+        "laravel/sanctum": "^2.4",
+        "gregwar/captcha": "^1.1"
     },
     "require-dev": {
         "orchestra/testbench": "~5.1.0",

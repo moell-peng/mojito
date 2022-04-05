@@ -7,6 +7,7 @@ use App\Member;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -21,6 +22,17 @@ class LoginController extends Controller
         if (! $config) {
             return $this->forbidden("Undefined guard");
         }
+
+        $cacheCaptcha = Cache::get($request->captcha_key);
+        if (! $cacheCaptcha) {
+            return $this->forbidden('Verification code has expired');
+        }
+
+        if ($cacheCaptcha['code'] != $request->captcha) {
+            return $this->forbidden('Please enter correct verify code');
+        }
+
+        Cache::forget($request->captcha_key);
 
         $conditions = data_get($config, 'conditions', []);
 

@@ -28,7 +28,7 @@ class LoginController extends Controller
             return $this->forbidden('Verification code has expired');
         }
 
-        if ($cacheCaptcha['code'] != $request->captcha) {
+        if (strtolower($cacheCaptcha['code']) != strtolower($request->captcha)) {
             return $this->forbidden('Please enter correct verify code');
         }
 

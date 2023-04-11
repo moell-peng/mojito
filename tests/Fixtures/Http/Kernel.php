@@ -3,7 +3,7 @@
 namespace Moell\Mojito\Tests\Fixtures\Http;
 
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
-use Orchestra\Testbench\Http\Kernel as HttpKernel;
+use Orchestra\Testbench\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
@@ -13,11 +13,12 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => Middleware\RedirectIfAuthenticated::class,
+        'guest' => \Orchestra\Testbench\Http\Middleware\RedirectIfAuthenticated::class,
         'mojito.permission' => \Moell\Mojito\Http\Middleware\Authenticate::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
+
 
     protected $middlewareGroups = [
         'api' => [
